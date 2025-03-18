@@ -7,9 +7,6 @@
 
   @File Name
     tmr1.c
- 
-  @Author
-    Muhammad Sulaiman
 
   @Summary
     This is the generated source file for the TMR1 driver using PIC24 / dsPIC33 / PIC32MM MCUs

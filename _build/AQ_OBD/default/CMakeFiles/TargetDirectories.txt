@@ -1,0 +1,6 @@
+C:/Users/mehna/Documents/Work/iwiz mira/OBD-interpreter-on-dsPIC/_build/AQ_OBD/default/CMakeFiles/AQ_OBD_default_default_XC16_assemble.dir
+C:/Users/mehna/Documents/Work/iwiz mira/OBD-interpreter-on-dsPIC/_build/AQ_OBD/default/CMakeFiles/AQ_OBD_default_default_XC16_compile.dir
+C:/Users/mehna/Documents/Work/iwiz mira/OBD-interpreter-on-dsPIC/_build/AQ_OBD/default/CMakeFiles/AQ_OBD_default_default.elf.dir
+C:/Users/mehna/Documents/Work/iwiz mira/OBD-interpreter-on-dsPIC/_build/AQ_OBD/default/CMakeFiles/AQ_OBD_default_Bin2Hex.dir
+C:/Users/mehna/Documents/Work/iwiz mira/OBD-interpreter-on-dsPIC/_build/AQ_OBD/default/CMakeFiles/edit_cache.dir
+C:/Users/mehna/Documents/Work/iwiz mira/OBD-interpreter-on-dsPIC/_build/AQ_OBD/default/CMakeFiles/rebuild_cache.dir

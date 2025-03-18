@@ -1,6 +1,6 @@
 /**
 * @file        commands.c
-* @author      Aqib D. Ace 
+* @author      Aqib D. Ace
 * @date        March 2025
 * @version     0.0.0
 */
@@ -129,7 +129,6 @@ void processSTCommand(char *command) {
         
         }
     }
-    // Add more commands here
     else if(strcmp(command, "STSLCS") == 0){
         UART1_Write('O');
         UART1_Write('K');
@@ -349,15 +348,15 @@ void processSTCommand(char *command) {
                 BRError = UART1_GetBRdiff(baudrate);
                 if (BRError <= 3)
                 {
-                    UART1_WriteString("OK\r");
+                    UART1_Write_String("OK\r");
                     delay_ms(200);
                     UART1_Initialize(baudrate);
                     delay_ms(200);
-                    UART1_WriteString("STN2120 v0.0.0");
+                    UART1_Write_String("STN2120 v0.0.0");
                     receivedChar = UART1_Read();
                     if (receivedChar == '\r')
                     {
-                        UART1_WriteString("\rOK");
+                        UART1_Write_String("\rOK");
                         oldbaudrate = baudrate;
                     }
                     else
@@ -452,7 +451,7 @@ void processSTCommand(char *command) {
     else if (strcmp(command, "STDI") == 0)
     {
         //Print device hardware ID string (e.g., ?OBDLink r1.7?)
-        UART1_WriteString(hardIDStr);
+        UART1_Write_String(hardIDStr);
     }
     else if (strcmp(command, "STDICPO") == 0)
     {
@@ -460,7 +459,7 @@ void processSTCommand(char *command) {
     }
     else if (strcmp(command, "STI") == 0)
     {
-        UART1_WriteString(stiStr);
+        UART1_Write_String(stiStr);
     }
     else if (strncmp(command, "STSATI", 6) == 0) {
         char *atiStr = command + 6; 
@@ -470,7 +469,7 @@ void processSTCommand(char *command) {
         }
         else
         {
-          //UART1_WriteString(atiStr);
+          //UART1_Write_String(atiStr);
             writeToNVM("STSATI",atiStr);
         }
     }
@@ -490,7 +489,7 @@ void processSTCommand(char *command) {
     else if (strcmp(command, "STSN") == 0)  
     {
         //Print device serial number
-        UART1_WriteString(serialStr);
+        UART1_Write_String(serialStr);
         
     }
     
@@ -538,7 +537,7 @@ void processSTCommand(char *command) {
            readADCvolts(ADCvolts,precession);
            
         } 
-        UART1_WriteString(ADCvolts);
+        UART1_Write_String(ADCvolts);
        
     }
     else if (strcmp(command, "STVRX") == 0) 
@@ -554,15 +553,15 @@ void processSTCommand(char *command) {
         uint8_t stcalstatus = readSavedCalibrationStatus();
         if (stcalstatus == 1)
         {
-            UART1_WriteString("ANALOG IN: SAVED");
+            UART1_Write_String("ANALOG IN: SAVED");
         }
         else if (stcalstatus == 2)
         {
-            UART1_WriteString("ANALOG IN: NOT READY");
+            UART1_Write_String("ANALOG IN: NOT READY");
         }
         else if (stcalstatus == 3)
         {
-            UART1_WriteString("ANALOG IN: READY");
+            UART1_Write_String("ANALOG IN: READY");
         }
         else
         {
@@ -652,7 +651,7 @@ void processATCommand(char *command)
            * Message filter
            * Timeouts*/
         setAllSettoDefault();
-        UART1_WriteString("\rOK");
+        UART1_Write_String("\rOK");
     }
     else if  (strncmp(command, "ATE", 3) == 0)
     {
@@ -677,7 +676,7 @@ void processATCommand(char *command)
             {
                 enableEcho();
             }
-            UART1_WriteString("\rOK");
+            UART1_Write_String("\rOK");
           }
           else
           {
@@ -688,7 +687,7 @@ void processATCommand(char *command)
     else if  (strcmp(command, "ATI") == 0)
     {
         //print ELM327 version ID string
-        UART1_WriteString(ELM327_VERSION);
+        UART1_Write_String(ELM327_VERSION);
      
     }
     else if  (strncmp(command, "ATL", 3) == 0)
@@ -713,7 +712,7 @@ void processATCommand(char *command)
             {
                 enableLF();
             }
-            UART1_WriteString("\rOK");
+            UART1_Write_String("\rOK");
           }
           else
           {
@@ -728,7 +727,7 @@ void processATCommand(char *command)
         selected baud rate (selected using ATBRD, STBR, or 
         STSBR).*/
         loadDefaultOnWarmReset();
-        UART1_WriteString("\rOK");
+        UART1_Write_String("\rOK");
     }
     else if  (strcmp(command, "ATZ") == 0)
     {
@@ -756,7 +755,7 @@ void processATCommand(char *command)
         else
         {
           writeToNVM("AT@3",DeviceIDStr);
-          UART1_WriteString("\rOK");
+          UART1_Write_String("\rOK");
         } 
     }
     else if  (strncmp(command, "ATPPS", 5) == 0)
@@ -767,7 +766,7 @@ void processATCommand(char *command)
     else if (strncmp(command, "ATPPR", 5) == 0)
     {
         restoreDefaultPParameters();
-        UART1_WriteString("\rOK");
+        UART1_Write_String("\rOK");
     }
     else if (strncmp(command, "ATPPT", 5) == 0)
     {
@@ -785,7 +784,7 @@ void processATCommand(char *command)
         else
         {
           configurePPs(atppStr);
-          UART1_WriteString("\rOK");
+          UART1_Write_String("\rOK");
         }
     }
     

@@ -6,6 +6,7 @@
 */
 
 #include "mcc_generated_files/system.h"
+#include "mcc_generated_files/uart1.h"
 
 char receivedCmd[50]; //buffer for commands
 
@@ -24,7 +25,7 @@ int main(void)
     SYSTEM_Initialize();
 
     delay_ms(200);
-    UART1_WriteString("ELM327 v1.4b\r"); ///ATI string received on connection
+    UART1_Write_String("ELM327 v1.4b\r"); ///ATI string received on connection
     processCommand("ATPPR");
     UART1_Write('>');
         

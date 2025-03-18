@@ -1,6 +1,6 @@
 /*
  * File:        PM.c
- * Author:      Muhammad Sulaiman
+ * Author:      Muhammad Sulaiman (GitHub: SulaimanNiazi)
  * Comments:    This is the source file for Power Management
  * Created on   March 8, 2025, 4:41 PM
  */
@@ -12,6 +12,7 @@
 #include "mcc_generated_files/tmr1.h"
 #include <stdbool.h>
 #include <stdlib.h>
+#include <string.h>
 
 void PM_init(){
     strcpy(LAST_SLEEP_TRIG, "NONE");

@@ -6,9 +6,6 @@
 
   @File Name
     adc1.h
- 
-  @Author
-    Muhammad Sulaiman
 
   @Summary
     This is the generated header file for the ADC1 driver using PIC24 / dsPIC33 / PIC32MM MCUs

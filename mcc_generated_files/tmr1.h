@@ -6,9 +6,6 @@
 
   @File Name
     tmr1.h
- 
-  @Author
-    Muhammad Sulaiman
 
   @Summary
     This is the generated header file for the TMR1 driver using PIC24 / dsPIC33 / PIC32MM MCUs

@@ -81,9 +81,9 @@
 #include "interrupt_manager.h"
 #include "traps.h"
 #include "uart1.h"
-#include "../PM.h"
 #include "tmr1.h"
 #include "adc1.h"
+#include "../PM.h"
 
 void SYSTEM_Initialize(void)
 {
@@ -91,14 +91,12 @@ void SYSTEM_Initialize(void)
     CLOCK_Initialize();
     INTERRUPT_Initialize();
     UART1_Initialize(9600);
-    ADC1_Initialize();
-    INTERRUPT_GlobalEnable();
-    SYSTEM_CORCONModeOperatingSet(CORCON_MODE_PORVALUES);
-    TMR1_Initialize();
-    PM_init();
     INTERRUPT_GlobalEnable();
     SYSTEM_CORCONModeOperatingSet(CORCON_MODE_PORVALUES);
     initDefaultAT();
+    TMR1_Initialize();
+    ADC1_Initialize();
+    PM_init();
 }
 
 /**

@@ -1,0 +1,110 @@
+[
+{
+  "directory": "C:/Users/mehna/Documents/Work/iwiz mira/OBD-interpreter-on-dsPIC/_build/AQ_OBD/default",
+  "command": "c:\\PROGRA~1\\MICROC~1\\xc16\\v2.10\\bin\\xc16-gcc.exe -DXPRJ_default=default -I\"C:/Users/mehna/Documents/Work/iwiz mira/OBD-interpreter-on-dsPIC/cmake/AQ_OBD/default/../../..\" -g -mcpu=33EP256GP506 -Wa,--defsym=__MPLAB_BUILD=1,--no-relax -mdfp=C:/Users/mehna/.mchp_packs/Microchip/dsPIC33E-GM-GP-MC-GU-MU_DFP/1.5.258/xc16 -o CMakeFiles\\AQ_OBD_default_default_XC16_assemble.dir\\C_\\Users\\mehna\\Documents\\Work\\iwiz_mira\\OBD-interpreter-on-dsPIC\\flash.s.o -c \"C:\\Users\\mehna\\Documents\\Work\\iwiz mira\\OBD-interpreter-on-dsPIC\\flash.s\"",
+  "file": "C:\\Users\\mehna\\Documents\\Work\\iwiz mira\\OBD-interpreter-on-dsPIC\\flash.s",
+  "output": "CMakeFiles\\AQ_OBD_default_default_XC16_assemble.dir\\C_\\Users\\mehna\\Documents\\Work\\iwiz_mira\\OBD-interpreter-on-dsPIC\\flash.s.o"
+},
+{
+  "directory": "C:/Users/mehna/Documents/Work/iwiz mira/OBD-interpreter-on-dsPIC/_build/AQ_OBD/default",
+  "command": "c:\\PROGRA~1\\MICROC~1\\xc16\\v2.10\\bin\\xc16-gcc.exe -DXPRJ_default=default -I\"C:/Users/mehna/Documents/Work/iwiz mira/OBD-interpreter-on-dsPIC/cmake/AQ_OBD/default/../../..\" -g -mcpu=33EP256GP506 -Wa,--defsym=__MPLAB_BUILD=1,--no-relax -mdfp=C:/Users/mehna/.mchp_packs/Microchip/dsPIC33E-GM-GP-MC-GU-MU_DFP/1.5.258/xc16 -o CMakeFiles\\AQ_OBD_default_default_XC16_assemble.dir\\C_\\Users\\mehna\\Documents\\Work\\iwiz_mira\\OBD-interpreter-on-dsPIC\\mcc_generated_files\\where_was_i.s.o -c \"C:\\Users\\mehna\\Documents\\Work\\iwiz mira\\OBD-interpreter-on-dsPIC\\mcc_generated_files\\where_was_i.s\"",
+  "file": "C:\\Users\\mehna\\Documents\\Work\\iwiz mira\\OBD-interpreter-on-dsPIC\\mcc_generated_files\\where_was_i.s",
+  "output": "CMakeFiles\\AQ_OBD_default_default_XC16_assemble.dir\\C_\\Users\\mehna\\Documents\\Work\\iwiz_mira\\OBD-interpreter-on-dsPIC\\mcc_generated_files\\where_was_i.s.o"
+},
+{
+  "directory": "C:/Users/mehna/Documents/Work/iwiz mira/OBD-interpreter-on-dsPIC/_build/AQ_OBD/default",
+  "command": "c:\\PROGRA~1\\MICROC~1\\xc16\\v2.10\\bin\\xc16-gcc.exe -DXPRJ_default=default -I\"C:/Users/mehna/Documents/Work/iwiz mira/OBD-interpreter-on-dsPIC/cmake/AQ_OBD/default/../../..\" -g -mcpu=33EP256GP506 -O0 -msmart-io=1 -Wall -msfr-warn=off -mdfp=C:/Users/mehna/.mchp_packs/Microchip/dsPIC33E-GM-GP-MC-GU-MU_DFP/1.5.258/xc16 -o CMakeFiles\\AQ_OBD_default_default_XC16_compile.dir\\C_\\Users\\mehna\\Documents\\Work\\iwiz_mira\\OBD-interpreter-on-dsPIC\\PM.c.o -c \"C:\\Users\\mehna\\Documents\\Work\\iwiz mira\\OBD-interpreter-on-dsPIC\\PM.c\"",
+  "file": "C:\\Users\\mehna\\Documents\\Work\\iwiz mira\\OBD-interpreter-on-dsPIC\\PM.c",
+  "output": "CMakeFiles\\AQ_OBD_default_default_XC16_compile.dir\\C_\\Users\\mehna\\Documents\\Work\\iwiz_mira\\OBD-interpreter-on-dsPIC\\PM.c.o"
+},
+{
+  "directory": "C:/Users/mehna/Documents/Work/iwiz mira/OBD-interpreter-on-dsPIC/_build/AQ_OBD/default",
+  "command": "c:\\PROGRA~1\\MICROC~1\\xc16\\v2.10\\bin\\xc16-gcc.exe -DXPRJ_default=default -I\"C:/Users/mehna/Documents/Work/iwiz mira/OBD-interpreter-on-dsPIC/cmake/AQ_OBD/default/../../..\" -g -mcpu=33EP256GP506 -O0 -msmart-io=1 -Wall -msfr-warn=off -mdfp=C:/Users/mehna/.mchp_packs/Microchip/dsPIC33E-GM-GP-MC-GU-MU_DFP/1.5.258/xc16 -o CMakeFiles\\AQ_OBD_default_default_XC16_compile.dir\\C_\\Users\\mehna\\Documents\\Work\\iwiz_mira\\OBD-interpreter-on-dsPIC\\at.c.o -c \"C:\\Users\\mehna\\Documents\\Work\\iwiz mira\\OBD-interpreter-on-dsPIC\\at.c\"",
+  "file": "C:\\Users\\mehna\\Documents\\Work\\iwiz mira\\OBD-interpreter-on-dsPIC\\at.c",
+  "output": "CMakeFiles\\AQ_OBD_default_default_XC16_compile.dir\\C_\\Users\\mehna\\Documents\\Work\\iwiz_mira\\OBD-interpreter-on-dsPIC\\at.c.o"
+},
+{
+  "directory": "C:/Users/mehna/Documents/Work/iwiz mira/OBD-interpreter-on-dsPIC/_build/AQ_OBD/default",
+  "command": "c:\\PROGRA~1\\MICROC~1\\xc16\\v2.10\\bin\\xc16-gcc.exe -DXPRJ_default=default -I\"C:/Users/mehna/Documents/Work/iwiz mira/OBD-interpreter-on-dsPIC/cmake/AQ_OBD/default/../../..\" -g -mcpu=33EP256GP506 -O0 -msmart-io=1 -Wall -msfr-warn=off -mdfp=C:/Users/mehna/.mchp_packs/Microchip/dsPIC33E-GM-GP-MC-GU-MU_DFP/1.5.258/xc16 -o CMakeFiles\\AQ_OBD_default_default_XC16_compile.dir\\C_\\Users\\mehna\\Documents\\Work\\iwiz_mira\\OBD-interpreter-on-dsPIC\\commands.c.o -c \"C:\\Users\\mehna\\Documents\\Work\\iwiz mira\\OBD-interpreter-on-dsPIC\\commands.c\"",
+  "file": "C:\\Users\\mehna\\Documents\\Work\\iwiz mira\\OBD-interpreter-on-dsPIC\\commands.c",
+  "output": "CMakeFiles\\AQ_OBD_default_default_XC16_compile.dir\\C_\\Users\\mehna\\Documents\\Work\\iwiz_mira\\OBD-interpreter-on-dsPIC\\commands.c.o"
+},
+{
+  "directory": "C:/Users/mehna/Documents/Work/iwiz mira/OBD-interpreter-on-dsPIC/_build/AQ_OBD/default",
+  "command": "c:\\PROGRA~1\\MICROC~1\\xc16\\v2.10\\bin\\xc16-gcc.exe -DXPRJ_default=default -I\"C:/Users/mehna/Documents/Work/iwiz mira/OBD-interpreter-on-dsPIC/cmake/AQ_OBD/default/../../..\" -g -mcpu=33EP256GP506 -O0 -msmart-io=1 -Wall -msfr-warn=off -mdfp=C:/Users/mehna/.mchp_packs/Microchip/dsPIC33E-GM-GP-MC-GU-MU_DFP/1.5.258/xc16 -o CMakeFiles\\AQ_OBD_default_default_XC16_compile.dir\\C_\\Users\\mehna\\Documents\\Work\\iwiz_mira\\OBD-interpreter-on-dsPIC\\main.c.o -c \"C:\\Users\\mehna\\Documents\\Work\\iwiz mira\\OBD-interpreter-on-dsPIC\\main.c\"",
+  "file": "C:\\Users\\mehna\\Documents\\Work\\iwiz mira\\OBD-interpreter-on-dsPIC\\main.c",
+  "output": "CMakeFiles\\AQ_OBD_default_default_XC16_compile.dir\\C_\\Users\\mehna\\Documents\\Work\\iwiz_mira\\OBD-interpreter-on-dsPIC\\main.c.o"
+},
+{
+  "directory": "C:/Users/mehna/Documents/Work/iwiz mira/OBD-interpreter-on-dsPIC/_build/AQ_OBD/default",
+  "command": "c:\\PROGRA~1\\MICROC~1\\xc16\\v2.10\\bin\\xc16-gcc.exe -DXPRJ_default=default -I\"C:/Users/mehna/Documents/Work/iwiz mira/OBD-interpreter-on-dsPIC/cmake/AQ_OBD/default/../../..\" -g -mcpu=33EP256GP506 -O0 -msmart-io=1 -Wall -msfr-warn=off -mdfp=C:/Users/mehna/.mchp_packs/Microchip/dsPIC33E-GM-GP-MC-GU-MU_DFP/1.5.258/xc16 -o CMakeFiles\\AQ_OBD_default_default_XC16_compile.dir\\C_\\Users\\mehna\\Documents\\Work\\iwiz_mira\\OBD-interpreter-on-dsPIC\\mcc_generated_files\\adc1.c.o -c \"C:\\Users\\mehna\\Documents\\Work\\iwiz mira\\OBD-interpreter-on-dsPIC\\mcc_generated_files\\adc1.c\"",
+  "file": "C:\\Users\\mehna\\Documents\\Work\\iwiz mira\\OBD-interpreter-on-dsPIC\\mcc_generated_files\\adc1.c",
+  "output": "CMakeFiles\\AQ_OBD_default_default_XC16_compile.dir\\C_\\Users\\mehna\\Documents\\Work\\iwiz_mira\\OBD-interpreter-on-dsPIC\\mcc_generated_files\\adc1.c.o"
+},
+{
+  "directory": "C:/Users/mehna/Documents/Work/iwiz mira/OBD-interpreter-on-dsPIC/_build/AQ_OBD/default",
+  "command": "c:\\PROGRA~1\\MICROC~1\\xc16\\v2.10\\bin\\xc16-gcc.exe -DXPRJ_default=default -I\"C:/Users/mehna/Documents/Work/iwiz mira/OBD-interpreter-on-dsPIC/cmake/AQ_OBD/default/../../..\" -g -mcpu=33EP256GP506 -O0 -msmart-io=1 -Wall -msfr-warn=off -mdfp=C:/Users/mehna/.mchp_packs/Microchip/dsPIC33E-GM-GP-MC-GU-MU_DFP/1.5.258/xc16 -o CMakeFiles\\AQ_OBD_default_default_XC16_compile.dir\\C_\\Users\\mehna\\Documents\\Work\\iwiz_mira\\OBD-interpreter-on-dsPIC\\mcc_generated_files\\clock.c.o -c \"C:\\Users\\mehna\\Documents\\Work\\iwiz mira\\OBD-interpreter-on-dsPIC\\mcc_generated_files\\clock.c\"",
+  "file": "C:\\Users\\mehna\\Documents\\Work\\iwiz mira\\OBD-interpreter-on-dsPIC\\mcc_generated_files\\clock.c",
+  "output": "CMakeFiles\\AQ_OBD_default_default_XC16_compile.dir\\C_\\Users\\mehna\\Documents\\Work\\iwiz_mira\\OBD-interpreter-on-dsPIC\\mcc_generated_files\\clock.c.o"
+},
+{
+  "directory": "C:/Users/mehna/Documents/Work/iwiz mira/OBD-interpreter-on-dsPIC/_build/AQ_OBD/default",
+  "command": "c:\\PROGRA~1\\MICROC~1\\xc16\\v2.10\\bin\\xc16-gcc.exe -DXPRJ_default=default -I\"C:/Users/mehna/Documents/Work/iwiz mira/OBD-interpreter-on-dsPIC/cmake/AQ_OBD/default/../../..\" -g -mcpu=33EP256GP506 -O0 -msmart-io=1 -Wall -msfr-warn=off -mdfp=C:/Users/mehna/.mchp_packs/Microchip/dsPIC33E-GM-GP-MC-GU-MU_DFP/1.5.258/xc16 -o CMakeFiles\\AQ_OBD_default_default_XC16_compile.dir\\C_\\Users\\mehna\\Documents\\Work\\iwiz_mira\\OBD-interpreter-on-dsPIC\\mcc_generated_files\\interrupt_manager.c.o -c \"C:\\Users\\mehna\\Documents\\Work\\iwiz mira\\OBD-interpreter-on-dsPIC\\mcc_generated_files\\interrupt_manager.c\"",
+  "file": "C:\\Users\\mehna\\Documents\\Work\\iwiz mira\\OBD-interpreter-on-dsPIC\\mcc_generated_files\\interrupt_manager.c",
+  "output": "CMakeFiles\\AQ_OBD_default_default_XC16_compile.dir\\C_\\Users\\mehna\\Documents\\Work\\iwiz_mira\\OBD-interpreter-on-dsPIC\\mcc_generated_files\\interrupt_manager.c.o"
+},
+{
+  "directory": "C:/Users/mehna/Documents/Work/iwiz mira/OBD-interpreter-on-dsPIC/_build/AQ_OBD/default",
+  "command": "c:\\PROGRA~1\\MICROC~1\\xc16\\v2.10\\bin\\xc16-gcc.exe -DXPRJ_default=default -I\"C:/Users/mehna/Documents/Work/iwiz mira/OBD-interpreter-on-dsPIC/cmake/AQ_OBD/default/../../..\" -g -mcpu=33EP256GP506 -O0 -msmart-io=1 -Wall -msfr-warn=off -mdfp=C:/Users/mehna/.mchp_packs/Microchip/dsPIC33E-GM-GP-MC-GU-MU_DFP/1.5.258/xc16 -o CMakeFiles\\AQ_OBD_default_default_XC16_compile.dir\\C_\\Users\\mehna\\Documents\\Work\\iwiz_mira\\OBD-interpreter-on-dsPIC\\mcc_generated_files\\mcc.c.o -c \"C:\\Users\\mehna\\Documents\\Work\\iwiz mira\\OBD-interpreter-on-dsPIC\\mcc_generated_files\\mcc.c\"",
+  "file": "C:\\Users\\mehna\\Documents\\Work\\iwiz mira\\OBD-interpreter-on-dsPIC\\mcc_generated_files\\mcc.c",
+  "output": "CMakeFiles\\AQ_OBD_default_default_XC16_compile.dir\\C_\\Users\\mehna\\Documents\\Work\\iwiz_mira\\OBD-interpreter-on-dsPIC\\mcc_generated_files\\mcc.c.o"
+},
+{
+  "directory": "C:/Users/mehna/Documents/Work/iwiz mira/OBD-interpreter-on-dsPIC/_build/AQ_OBD/default",
+  "command": "c:\\PROGRA~1\\MICROC~1\\xc16\\v2.10\\bin\\xc16-gcc.exe -DXPRJ_default=default -I\"C:/Users/mehna/Documents/Work/iwiz mira/OBD-interpreter-on-dsPIC/cmake/AQ_OBD/default/../../..\" -g -mcpu=33EP256GP506 -O0 -msmart-io=1 -Wall -msfr-warn=off -mdfp=C:/Users/mehna/.mchp_packs/Microchip/dsPIC33E-GM-GP-MC-GU-MU_DFP/1.5.258/xc16 -o CMakeFiles\\AQ_OBD_default_default_XC16_compile.dir\\C_\\Users\\mehna\\Documents\\Work\\iwiz_mira\\OBD-interpreter-on-dsPIC\\mcc_generated_files\\pin_manager.c.o -c \"C:\\Users\\mehna\\Documents\\Work\\iwiz mira\\OBD-interpreter-on-dsPIC\\mcc_generated_files\\pin_manager.c\"",
+  "file": "C:\\Users\\mehna\\Documents\\Work\\iwiz mira\\OBD-interpreter-on-dsPIC\\mcc_generated_files\\pin_manager.c",
+  "output": "CMakeFiles\\AQ_OBD_default_default_XC16_compile.dir\\C_\\Users\\mehna\\Documents\\Work\\iwiz_mira\\OBD-interpreter-on-dsPIC\\mcc_generated_files\\pin_manager.c.o"
+},
+{
+  "directory": "C:/Users/mehna/Documents/Work/iwiz mira/OBD-interpreter-on-dsPIC/_build/AQ_OBD/default",
+  "command": "c:\\PROGRA~1\\MICROC~1\\xc16\\v2.10\\bin\\xc16-gcc.exe -DXPRJ_default=default -I\"C:/Users/mehna/Documents/Work/iwiz mira/OBD-interpreter-on-dsPIC/cmake/AQ_OBD/default/../../..\" -g -mcpu=33EP256GP506 -O0 -msmart-io=1 -Wall -msfr-warn=off -mdfp=C:/Users/mehna/.mchp_packs/Microchip/dsPIC33E-GM-GP-MC-GU-MU_DFP/1.5.258/xc16 -o CMakeFiles\\AQ_OBD_default_default_XC16_compile.dir\\C_\\Users\\mehna\\Documents\\Work\\iwiz_mira\\OBD-interpreter-on-dsPIC\\mcc_generated_files\\reset.c.o -c \"C:\\Users\\mehna\\Documents\\Work\\iwiz mira\\OBD-interpreter-on-dsPIC\\mcc_generated_files\\reset.c\"",
+  "file": "C:\\Users\\mehna\\Documents\\Work\\iwiz mira\\OBD-interpreter-on-dsPIC\\mcc_generated_files\\reset.c",
+  "output": "CMakeFiles\\AQ_OBD_default_default_XC16_compile.dir\\C_\\Users\\mehna\\Documents\\Work\\iwiz_mira\\OBD-interpreter-on-dsPIC\\mcc_generated_files\\reset.c.o"
+},
+{
+  "directory": "C:/Users/mehna/Documents/Work/iwiz mira/OBD-interpreter-on-dsPIC/_build/AQ_OBD/default",
+  "command": "c:\\PROGRA~1\\MICROC~1\\xc16\\v2.10\\bin\\xc16-gcc.exe -DXPRJ_default=default -I\"C:/Users/mehna/Documents/Work/iwiz mira/OBD-interpreter-on-dsPIC/cmake/AQ_OBD/default/../../..\" -g -mcpu=33EP256GP506 -O0 -msmart-io=1 -Wall -msfr-warn=off -mdfp=C:/Users/mehna/.mchp_packs/Microchip/dsPIC33E-GM-GP-MC-GU-MU_DFP/1.5.258/xc16 -o CMakeFiles\\AQ_OBD_default_default_XC16_compile.dir\\C_\\Users\\mehna\\Documents\\Work\\iwiz_mira\\OBD-interpreter-on-dsPIC\\mcc_generated_files\\system.c.o -c \"C:\\Users\\mehna\\Documents\\Work\\iwiz mira\\OBD-interpreter-on-dsPIC\\mcc_generated_files\\system.c\"",
+  "file": "C:\\Users\\mehna\\Documents\\Work\\iwiz mira\\OBD-interpreter-on-dsPIC\\mcc_generated_files\\system.c",
+  "output": "CMakeFiles\\AQ_OBD_default_default_XC16_compile.dir\\C_\\Users\\mehna\\Documents\\Work\\iwiz_mira\\OBD-interpreter-on-dsPIC\\mcc_generated_files\\system.c.o"
+},
+{
+  "directory": "C:/Users/mehna/Documents/Work/iwiz mira/OBD-interpreter-on-dsPIC/_build/AQ_OBD/default",
+  "command": "c:\\PROGRA~1\\MICROC~1\\xc16\\v2.10\\bin\\xc16-gcc.exe -DXPRJ_default=default -I\"C:/Users/mehna/Documents/Work/iwiz mira/OBD-interpreter-on-dsPIC/cmake/AQ_OBD/default/../../..\" -g -mcpu=33EP256GP506 -O0 -msmart-io=1 -Wall -msfr-warn=off -mdfp=C:/Users/mehna/.mchp_packs/Microchip/dsPIC33E-GM-GP-MC-GU-MU_DFP/1.5.258/xc16 -o CMakeFiles\\AQ_OBD_default_default_XC16_compile.dir\\C_\\Users\\mehna\\Documents\\Work\\iwiz_mira\\OBD-interpreter-on-dsPIC\\mcc_generated_files\\tmr1.c.o -c \"C:\\Users\\mehna\\Documents\\Work\\iwiz mira\\OBD-interpreter-on-dsPIC\\mcc_generated_files\\tmr1.c\"",
+  "file": "C:\\Users\\mehna\\Documents\\Work\\iwiz mira\\OBD-interpreter-on-dsPIC\\mcc_generated_files\\tmr1.c",
+  "output": "CMakeFiles\\AQ_OBD_default_default_XC16_compile.dir\\C_\\Users\\mehna\\Documents\\Work\\iwiz_mira\\OBD-interpreter-on-dsPIC\\mcc_generated_files\\tmr1.c.o"
+},
+{
+  "directory": "C:/Users/mehna/Documents/Work/iwiz mira/OBD-interpreter-on-dsPIC/_build/AQ_OBD/default",
+  "command": "c:\\PROGRA~1\\MICROC~1\\xc16\\v2.10\\bin\\xc16-gcc.exe -DXPRJ_default=default -I\"C:/Users/mehna/Documents/Work/iwiz mira/OBD-interpreter-on-dsPIC/cmake/AQ_OBD/default/../../..\" -g -mcpu=33EP256GP506 -O0 -msmart-io=1 -Wall -msfr-warn=off -mdfp=C:/Users/mehna/.mchp_packs/Microchip/dsPIC33E-GM-GP-MC-GU-MU_DFP/1.5.258/xc16 -o CMakeFiles\\AQ_OBD_default_default_XC16_compile.dir\\C_\\Users\\mehna\\Documents\\Work\\iwiz_mira\\OBD-interpreter-on-dsPIC\\mcc_generated_files\\traps.c.o -c \"C:\\Users\\mehna\\Documents\\Work\\iwiz mira\\OBD-interpreter-on-dsPIC\\mcc_generated_files\\traps.c\"",
+  "file": "C:\\Users\\mehna\\Documents\\Work\\iwiz mira\\OBD-interpreter-on-dsPIC\\mcc_generated_files\\traps.c",
+  "output": "CMakeFiles\\AQ_OBD_default_default_XC16_compile.dir\\C_\\Users\\mehna\\Documents\\Work\\iwiz_mira\\OBD-interpreter-on-dsPIC\\mcc_generated_files\\traps.c.o"
+},
+{
+  "directory": "C:/Users/mehna/Documents/Work/iwiz mira/OBD-interpreter-on-dsPIC/_build/AQ_OBD/default",
+  "command": "c:\\PROGRA~1\\MICROC~1\\xc16\\v2.10\\bin\\xc16-gcc.exe -DXPRJ_default=default -I\"C:/Users/mehna/Documents/Work/iwiz mira/OBD-interpreter-on-dsPIC/cmake/AQ_OBD/default/../../..\" -g -mcpu=33EP256GP506 -O0 -msmart-io=1 -Wall -msfr-warn=off -mdfp=C:/Users/mehna/.mchp_packs/Microchip/dsPIC33E-GM-GP-MC-GU-MU_DFP/1.5.258/xc16 -o CMakeFiles\\AQ_OBD_default_default_XC16_compile.dir\\C_\\Users\\mehna\\Documents\\Work\\iwiz_mira\\OBD-interpreter-on-dsPIC\\mcc_generated_files\\uart1.c.o -c \"C:\\Users\\mehna\\Documents\\Work\\iwiz mira\\OBD-interpreter-on-dsPIC\\mcc_generated_files\\uart1.c\"",
+  "file": "C:\\Users\\mehna\\Documents\\Work\\iwiz mira\\OBD-interpreter-on-dsPIC\\mcc_generated_files\\uart1.c",
+  "output": "CMakeFiles\\AQ_OBD_default_default_XC16_compile.dir\\C_\\Users\\mehna\\Documents\\Work\\iwiz_mira\\OBD-interpreter-on-dsPIC\\mcc_generated_files\\uart1.c.o"
+},
+{
+  "directory": "C:/Users/mehna/Documents/Work/iwiz mira/OBD-interpreter-on-dsPIC/_build/AQ_OBD/default",
+  "command": "c:\\PROGRA~1\\MICROC~1\\xc16\\v2.10\\bin\\xc16-gcc.exe -DXPRJ_default=default -I\"C:/Users/mehna/Documents/Work/iwiz mira/OBD-interpreter-on-dsPIC/cmake/AQ_OBD/default/../../..\" -g -mcpu=33EP256GP506 -O0 -msmart-io=1 -Wall -msfr-warn=off -mdfp=C:/Users/mehna/.mchp_packs/Microchip/dsPIC33E-GM-GP-MC-GU-MU_DFP/1.5.258/xc16 -o CMakeFiles\\AQ_OBD_default_default_XC16_compile.dir\\C_\\Users\\mehna\\Documents\\Work\\iwiz_mira\\OBD-interpreter-on-dsPIC\\nvmpic.c.o -c \"C:\\Users\\mehna\\Documents\\Work\\iwiz mira\\OBD-interpreter-on-dsPIC\\nvmpic.c\"",
+  "file": "C:\\Users\\mehna\\Documents\\Work\\iwiz mira\\OBD-interpreter-on-dsPIC\\nvmpic.c",
+  "output": "CMakeFiles\\AQ_OBD_default_default_XC16_compile.dir\\C_\\Users\\mehna\\Documents\\Work\\iwiz_mira\\OBD-interpreter-on-dsPIC\\nvmpic.c.o"
+},
+{
+  "directory": "C:/Users/mehna/Documents/Work/iwiz mira/OBD-interpreter-on-dsPIC/_build/AQ_OBD/default",
+  "command": "c:\\PROGRA~1\\MICROC~1\\xc16\\v2.10\\bin\\xc16-gcc.exe -DXPRJ_default=default -I\"C:/Users/mehna/Documents/Work/iwiz mira/OBD-interpreter-on-dsPIC/cmake/AQ_OBD/default/../../..\" -g -mcpu=33EP256GP506 -O0 -msmart-io=1 -Wall -msfr-warn=off -mdfp=C:/Users/mehna/.mchp_packs/Microchip/dsPIC33E-GM-GP-MC-GU-MU_DFP/1.5.258/xc16 -o CMakeFiles\\AQ_OBD_default_default_XC16_compile.dir\\C_\\Users\\mehna\\Documents\\Work\\iwiz_mira\\OBD-interpreter-on-dsPIC\\pps.c.o -c \"C:\\Users\\mehna\\Documents\\Work\\iwiz mira\\OBD-interpreter-on-dsPIC\\pps.c\"",
+  "file": "C:\\Users\\mehna\\Documents\\Work\\iwiz mira\\OBD-interpreter-on-dsPIC\\pps.c",
+  "output": "CMakeFiles\\AQ_OBD_default_default_XC16_compile.dir\\C_\\Users\\mehna\\Documents\\Work\\iwiz_mira\\OBD-interpreter-on-dsPIC\\pps.c.o"
+}
+]

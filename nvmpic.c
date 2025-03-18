@@ -146,7 +146,7 @@ void printPParameters(void)
     {
         sprintf(TXbuf,"%02X:%02X %c " ,i, read_PPdata[i*2],(read_PPdata[(i*2)+1]==0 ? 'N' : 'F')) ;
         delay2_ms(100);
-        UART1_WriteString(TXbuf);   
+        UART1_Write_String(TXbuf);   
         if ((i+1)%4==0)
         {
             UART1_Write('\r');
@@ -286,36 +286,36 @@ void printAllSaved(void)
         read_PPdata[(i*3)+2] = FLASH_ReadWord24(flash_storage_address + (i*2) + 68)     & 0xFF;
     }
     char TXbuf[30];
-    UART1_WriteString("\r\nUART1 baudrate: ");
+    UART1_Write_String("\r\nUART1 baudrate: ");
     for (int i = 0 ; i<12 ;i++) //4 words 12 bytes
     {
         TXbuf[i]=read_PPdata[i];
     }
-    UART1_WriteString(TXbuf); 
-    UART1_WriteString("\r\nSaved ATI device ID String: ");
+    UART1_Write_String(TXbuf); 
+    UART1_Write_String("\r\nSaved ATI device ID String: ");
     for (int i = 12 ; i<48 ;i++)//12 words 36 bytes
     {
         TXbuf[i-12]=read_PPdata[i];
     }
-    UART1_WriteString(TXbuf);
-    UART1_WriteString("\r\nSaved Hardware ID device ID String: ");
+    UART1_Write_String(TXbuf);
+    UART1_Write_String("\r\nSaved Hardware ID device ID String: ");
     for (int i = 48 ; i<96 ;i++)//16 words 48 bytes
     {
         TXbuf[i-48]=read_PPdata[i];
     }
-    UART1_WriteString(TXbuf);
-    UART1_WriteString("\r\nSaved STS@1 description device ID String: ");
+    UART1_Write_String(TXbuf);
+    UART1_Write_String("\r\nSaved STS@1 description device ID String: ");
     for (int i = 96 ; i<144 ;i++)//16 words 48 bytes
     {
         TXbuf[i-96]=read_PPdata[i];
     }
-    UART1_WriteString(TXbuf);
-    UART1_WriteString("\r\nSaved AT@3 description device ID String: ");
+    UART1_Write_String(TXbuf);
+    UART1_Write_String("\r\nSaved AT@3 description device ID String: ");
     for (int i = 144 ; i<156 ;i++)//16 words 48 bytes
     {
         TXbuf[i-144]=read_PPdata[i];
     }
-    UART1_WriteString(TXbuf);
+    UART1_Write_String(TXbuf);
     
 }
 void printSaved(char* command)
@@ -335,7 +335,7 @@ void printSaved(char* command)
         {
             TXbuf[i]=read_PPdata[i];
         }
-        UART1_WriteString(TXbuf);
+        UART1_Write_String(TXbuf);
     }
     if(strcmp(command,"ATI") == 0)
     {
@@ -343,7 +343,7 @@ void printSaved(char* command)
         {
             TXbuf[i-12]=read_PPdata[i];
         }
-        UART1_WriteString(TXbuf);
+        UART1_Write_String(TXbuf);
     }
     if(strcmp(command,"STSDI") == 0)
     {
@@ -351,7 +351,7 @@ void printSaved(char* command)
         {
             TXbuf[i-48]=read_PPdata[i];
         }
-        UART1_WriteString(TXbuf);
+        UART1_Write_String(TXbuf);
     }
     if(strcmp(command,"STS@1") == 0)
     {
@@ -359,7 +359,7 @@ void printSaved(char* command)
         {
             TXbuf[i-96]=read_PPdata[i];
         }
-        UART1_WriteString(TXbuf);
+        UART1_Write_String(TXbuf);
     }
     if(strcmp(command,"AT@3") == 0)
     {
@@ -367,7 +367,7 @@ void printSaved(char* command)
         {
             TXbuf[i-144]=read_PPdata[i];
         }
-        UART1_WriteString(TXbuf);
+        UART1_Write_String(TXbuf);
     }
 }
 //uint32_t returnread(int i)
@@ -433,7 +433,3 @@ void FlashDemo()
     //WordWriteExample();
     //PageWritexample();
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> main

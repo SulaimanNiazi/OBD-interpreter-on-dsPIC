@@ -1,0 +1,50 @@
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Users/mehna/.mplab/app-finder/apps/cmake/v3.27.1/cmake-3.27.1-windows-x86_64/share/cmake-3.27/Modules/CMakeDetermineSystem.cmake:206 (message)"
+      - "CMakeLists.txt:17 (project)"
+    message: |
+      The target system is: Generic -  - 
+      The host system is: Windows - 10.0.26100 - 
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Users/mehna/.mplab/app-finder/apps/cmake/v3.27.1/cmake-3.27.1-windows-x86_64/share/cmake-3.27/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/Users/mehna/.mplab/app-finder/apps/cmake/v3.27.1/cmake-3.27.1-windows-x86_64/share/cmake-3.27/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Users/mehna/.mplab/app-finder/apps/cmake/v3.27.1/cmake-3.27.1-windows-x86_64/share/cmake-3.27/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:17 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+      Compiler: c:/Program Files/Microchip/xc16/v2.10/bin/xc16-gcc.exe 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      Assembler messages:
+      Warning: Using default target divide cycle count of 17; please specify device.
+      
+      
+      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
+      
+      The C compiler identification is GNU, found in:
+        C:/Users/mehna/Documents/Work/iwiz mira/OBD-interpreter-on-dsPIC/_build/AQ_OBD/default/CMakeFiles/3.27.1/CompilerIdC/a.out
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Users/mehna/.mplab/app-finder/apps/cmake/v3.27.1/cmake-3.27.1-windows-x86_64/share/cmake-3.27/Modules/CMakeDetermineCompilerId.cmake:1107 (message)"
+      - "C:/Users/mehna/.mplab/app-finder/apps/cmake/v3.27.1/cmake-3.27.1-windows-x86_64/share/cmake-3.27/Modules/CMakeDetermineASMCompiler.cmake:127 (CMAKE_DETERMINE_COMPILER_ID_VENDOR)"
+      - "CMakeLists.txt:17 (project)"
+    message: |
+      Checking whether the ASM compiler is GNU using "--version" matched "(GNU assembler)|(GCC)|(Free Software Foundation)":
+      elf-gcc.exe (Microchip Technology) 4.5.1 (XC16, Microchip v2.10)  (A) Build date: Mar 27 2023
+      Part support version: 2.10 (A)
+      __XC16_VERSION__ == 2010
+      Copyright (C) 2010 Free Software Foundation, Inc.
+      This is free software; see the source for copying conditions.  There is NO
+      warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+...

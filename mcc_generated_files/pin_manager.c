@@ -121,9 +121,9 @@ void PIN_MANAGER_Initialize (void)
      * Set the PPS
      ***************************************************************************/
     __builtin_write_OSCCONL(OSCCON & 0xbf); // unlock PPS
-    
-    RPINR18bits.U1RXR = 0x0026;    //RB6->UART1:U1RX //38
+
     RPOR1bits.RP37R = 0x0001;    //RB5->UART1:U1TX
+    RPINR18bits.U1RXR = 0x0026;    //RB6->UART1:U1RX //38
 
     __builtin_write_OSCCONL(OSCCON | 0x40); // lock PPS
 }
