@@ -1,32 +1,19 @@
 /**
-  FLASH Generated Driver API Header File
-
-  @Company
-    Microchip Technology Inc.
-
-  @File Name
-    flash.h
-
-  @Summary
-    This is the generated header file for the FLASH driver using PIC24 / dsPIC33 / PIC32MM MCUs
-
-  @Description
-    This header file provides APIs for driver for FLASH.
-    Generation Information :
-        Product Revision  :  PIC24 / dsPIC33 / PIC32MM MCUs - 1.171.5
-        Device            :  dsPIC33EP256GP506
-        Driver Version    :  1.00
-    The generated drivers are tested against the following:
-        Compiler          :  XC16 v2.10
-        MPLAB 	          :  MPLAB X v6.05
+* @file        nvmpic.h
+* @author      Aqib D. Ace 
+* @date        March 2025
+* @version     0.0.0
 */
-
 #ifndef FLASH_H
 #define FLASH_H
 
 #include <xc.h>
 #include <stdint.h>
 #include <stdbool.h>
+#include <inttypes.h>
+#include "at.h"
+#include <stdio.h>
+#include <string.h>
 
 #define FLASH_ERASE_PAGE_SIZE_IN_INSTRUCTIONS 1024U
 
@@ -114,6 +101,11 @@ void printPParameters(void); //this function will print the programmable paramet
 void restoreDefaultPParameters(void); //this function will save the default programmable parameters in memory.
 //uint32_t returnread(int i);
 void getAddress(void);
-
+void printAllSaved(void);
+void printSaved(char* command);
+void configurePPs(char* argument);
+void enablePP(uint8_t serial);
+void disablePP(uint8_t serial);
+void changePP(uint8_t xx, uint8_t yy);
 #endif	/* FLASH_H */
 

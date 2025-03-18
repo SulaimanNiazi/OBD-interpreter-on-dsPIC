@@ -1,4 +1,11 @@
-  
+ 
+/**
+* @file        commands.h
+* @author      Aqib D. Ace 
+* @date        March 2025
+* @version     0.0.0
+*/
+
 #ifndef XC_HEADER_TEMPLATE_H
 #define	XC_HEADER_TEMPLATE_H
 
@@ -7,6 +14,8 @@ void processCommand(char *command); //verify and filters the command
 void processSTCommand(char *command); //process ST command
 void processATCommand(char *command); //process AT command
 void processOBDRequest(char *command);//process OBD request
+void loadDefaultOnWarmReset(void); //load default values on warm reset
+void resetAllNVMToDefault(void); //reset all value to default on NVM
 #ifdef	__cplusplus
 extern "C" {
 #endif /* __cplusplus */

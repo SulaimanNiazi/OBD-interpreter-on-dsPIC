@@ -96,6 +96,9 @@ void SYSTEM_Initialize(void)
     SYSTEM_CORCONModeOperatingSet(CORCON_MODE_PORVALUES);
     TMR1_Initialize();
     PM_init();
+    INTERRUPT_GlobalEnable();
+    SYSTEM_CORCONModeOperatingSet(CORCON_MODE_PORVALUES);
+    initDefaultAT();
 }
 
 /**
