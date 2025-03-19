@@ -17,7 +17,7 @@
 void PM_init(){
     strcpy(LAST_SLEEP_TRIG, "NONE");
     strcpy(LAST_WAKE_TRIG, "NONE");
-    UART_SLEEP = EXT_INPUT = EXT_SLEEP = VL_SLEEP = VL_WAKE = VCHG_WAKE = STSLXP_VAL = SLEEP_MODE = false;
+    UART_SLEEP = EXT_INPUT = EXT_SLEEP = VL_SLEEP = VL_WAKE = VCHG_WAKE = STSLXP_VAL = SLEEPING = false;
     UART_WAKE = EXT_WAKE = true;
     UART_SLEEP_TIM = 1200;
     UART_WAKE_TIM_L = 0;
@@ -49,31 +49,31 @@ void PM_init(){
 
 void PM_LCS(){
     char line[40], symbols[3]="";
-    snprintf(line, 40, "CTRL MODE: %s\n", CTRL_MODE);
+    snprintf(line, 40, "\r\nCTRL MODE: %s", CTRL_MODE);
     UART1_Write_String(line);
-    snprintf(line, 40, "PWR_CTRL: LOW POWER = %s\n", LOW_POWER?"HIGH":"LOW");
+    snprintf(line, 40, "\r\nPWR_CTRL: LOW POWER = %s", LOW_POWER?"HIGH":"LOW");
     UART1_Write_String(line);
-    snprintf(line, 40, "UART SLEEP: %s, %d s\n", UART_SLEEP?"ON":"OFF", UART_SLEEP_TIM);
+    snprintf(line, 40, "\r\nUART SLEEP: %s, %d s", UART_SLEEP?"ON":"OFF", UART_SLEEP_TIM);
     UART1_Write_String(line);
-    snprintf(line, 40, "UART WAKE: %s, %d-%d us\n", UART_WAKE?"ON":"OFF", UART_WAKE_TIM_L, UART_WAKE_TIM_H);
+    snprintf(line, 40, "\r\nUART WAKE: %s, %d-%d us", UART_WAKE?"ON":"OFF", UART_WAKE_TIM_L, UART_WAKE_TIM_H);
     UART1_Write_String(line);
-    snprintf(line, 40, "EXT INPUT: %s = SLEEP\n", EXT_INPUT?"HIGH":"LOW");
+    snprintf(line, 40, "\r\nEXT INPUT: %s = SLEEP", EXT_INPUT?"HIGH":"LOW");
     UART1_Write_String(line);
-    snprintf(line, 40, "EXT SLEEP: %s, %s FOR %d ms\n", EXT_SLEEP? "ON": "OFF", STSLXP_VAL? "HIGH": "LOW", EXT_SLEEP_VAL);
+    snprintf(line, 40, "\r\nEXT SLEEP: %s, %s FOR %d ms", EXT_SLEEP? "ON": "OFF", STSLXP_VAL? "HIGH": "LOW", EXT_SLEEP_VAL);
     UART1_Write_String(line);
-    snprintf(line, 40, "EXT WAKE: %s, %s FOR %d ms\n", EXT_WAKE? "ON": "OFF", STSLXP_VAL? "LOW": "HIGH", EXT_WAKE_VAL);
+    snprintf(line, 40, "\r\nEXT WAKE: %s, %s FOR %d ms", EXT_WAKE? "ON": "OFF", STSLXP_VAL? "LOW": "HIGH", EXT_WAKE_VAL);
     UART1_Write_String(line);
     symbols[0] = VL_SLEEP_SYMBOL;
     symbols[1] = PM_Is_Voltage_Valid(VL_SLEEP_VOLT)?'\0':'!';
-    snprintf(line, 40, "VL SLEEP: %s, %s%.2fV FOR %d s\n", VL_SLEEP?"ON":"OFF", symbols, VL_SLEEP_VOLT, VL_SLEEP_TIM);
+    snprintf(line, 40, "\r\nVL SLEEP: %s, %s%.2fV FOR %d s", VL_SLEEP?"ON":"OFF", symbols, VL_SLEEP_VOLT, VL_SLEEP_TIM);
     UART1_Write_String(line);
     symbols[0] = VL_WAKE_SYMBOL;
     symbols[1] = PM_Is_Voltage_Valid(VL_WAKE_VOLT)?'\0':'!';
-    snprintf(line, 40, "VL WAKE: %s, %s%.2fV FOR %d s\n", VL_WAKE?"ON":"OFF", symbols, VL_WAKE_VOLT, VL_WAKE_TIM);
+    snprintf(line, 40, "\r\nVL WAKE: %s, %s%.2fV FOR %d s", VL_WAKE?"ON":"OFF", symbols, VL_WAKE_VOLT, VL_WAKE_TIM);
     UART1_Write_String(line);
     symbols[0] = PM_Is_Voltage_Valid(VCHG_WAKE_VOLT)?'\0':'!';
     symbols[1]='\0';
-    snprintf(line, 40, "VCHG WAKE: %s, %s%.2fV IN %d ms\n", VCHG_WAKE?"ON":"OFF", symbols, VCHG_WAKE_VOLT, VCHG_WAKE_TIM);
+    snprintf(line, 40, "\r\nVCHG WAKE: %s, %s%.2fV IN %d ms", VCHG_WAKE?"ON":"OFF", symbols, VCHG_WAKE_VOLT, VCHG_WAKE_TIM);
     UART1_Write_String(line);
 }
 
@@ -83,16 +83,16 @@ void PM_Sleep(char* cause, uint16_t delay){
         while(TMR1_SoftwareCounterGet() < delay);
         TMR1_Stop();
         TMR1_SoftwareCounterClear();
-        UART1_Write_String("\n\nELM327 v1.4b\n\n");
+        UART1_Write_String("\r\n\nELM327 v1.4b\n\n");
         __builtin_pwrsav(0);
         strcpy(LAST_SLEEP_TRIG, cause);
-        SLEEP_MODE = true;
+        SLEEPING = true;
     }
 }
 
 void PM_STSLLT(){
     char line[30];
-    sprintf(line, "SLEEP: %s\nWAKE: %s\n", LAST_SLEEP_TRIG, LAST_WAKE_TRIG);
+    sprintf(line, "\r\nSLEEP: %s\r\nWAKE: %s", LAST_SLEEP_TRIG, LAST_WAKE_TRIG);
     UART1_Write_String(line);
 }
 
@@ -169,10 +169,16 @@ void PM_Set_Wake_Trig(char* trig){
     }
 }
 
-bool PM_Check_Reset_Recent_Sleep(){
-    if(SLEEP_MODE){
-        SLEEP_MODE = false;
-        return true;
+bool PM_Check_Reset_Recent_Sleep(){;
+    if(RCONbits.SLEEP /*SLEEPING*/){
+        if(UART_WAKE && (UART_WAKE_TIM_L <= (64/GetBR())*1000 <= UART_WAKE_TIM_H)){
+            RCONbits.SLEEP = 0;
+            //SLEEPING = false;
+            return true;
+        }
+        else{
+            __builtin_pwrsav(0);
+        }
     }
     return false;
 }

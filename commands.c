@@ -185,7 +185,7 @@ void processSTCommand(char *command) {
             UART1_Write('O');
             UART1_Write('K');
             UART1_Write('\n');
-            PM_STSLVG(num);
+            PM_STSLUIT(num);
         }else{
             UART1_Write('?');
             UART1_Write('\n');

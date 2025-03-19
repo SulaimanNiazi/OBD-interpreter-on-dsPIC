@@ -7,6 +7,7 @@
 
 void UART1_Initialize(uint32_t baudrate)
 {
+    BaudRate = baudrate;
     IEC0bits.U1TXIE = 0;
     IEC0bits.U1RXIE = 0;
 /**    
@@ -27,6 +28,10 @@ void UART1_Initialize(uint32_t baudrate)
     
     U1MODEbits.UARTEN = 1;  // enabling UARTEN bit
     U1STAbits.UTXEN = 1;   
+}
+
+uint16_t GetBR(){
+    return BaudRate;
 }
 
 uint32_t UART1_GetBRdiff(uint32_t brate)

@@ -59,6 +59,12 @@
 #endif
 
 /**
+  Section: UART1 Parameters
+*/
+        
+static unsigned int BaudRate;        
+        
+/**
   Section: UART1 Driver Routines
 */
 /**
@@ -84,6 +90,7 @@
 */
 void UART1_Initialize(uint32_t baudrate);
 uint32_t UART1_GetBRdiff(uint32_t brate);
+uint16_t GetBR();
 
 /**
   @Summary

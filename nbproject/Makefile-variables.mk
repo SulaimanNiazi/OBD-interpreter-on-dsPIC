@@ -6,5 +6,5 @@
 CND_BASEDIR=`pwd`
 # default configuration
 CND_ARTIFACT_DIR_default=dist/default/production
-CND_ARTIFACT_NAME_default=OBD_Interpreter-main.production.hex
-CND_ARTIFACT_PATH_default=dist/default/production/OBD_Interpreter-main.production.hex
+CND_ARTIFACT_NAME_default=OBD-interpreter-on-dsPIC.X.production.hex
+CND_ARTIFACT_PATH_default=dist/default/production/OBD-interpreter-on-dsPIC.X.production.hex
