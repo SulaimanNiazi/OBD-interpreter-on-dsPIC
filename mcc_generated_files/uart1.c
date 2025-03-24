@@ -66,7 +66,7 @@ uint8_t UART1_Read(void)
         }
         TMR1_Stop();
         if(TMR1_SoftwareCounterGet() >= Inactivity_limit){
-            PM_Sleep("UART", 0);
+            PM_Set_Sleep("UART", 0);
         }
         TMR1_SoftwareCounterClear();
     }else{
@@ -175,6 +175,10 @@ void __attribute__ ( ( interrupt, no_auto_psv ) ) _U1RXInterrupt( void )
 {
     IFS0bits.U1RXIF = 0;
     if(PM_Check_Reset_Recent_Sleep()){
-        PM_Set_Wake_Trig("UART");
+        if(UART_WAKE_TIM_L < 8000000/BaudRate < UART_WAKE_TIM_H){
+            PM_Set_Wake_Trig("UART");
+        }else{
+            PM_Sleep();
+        }
     }
 }

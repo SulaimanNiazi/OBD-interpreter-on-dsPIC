@@ -104,7 +104,7 @@ void PM_Manage_Power(){
             TMR1_Start();
             if(TMR1_SoftwareCounterGet()>=EXT_SLEEP_VAL){
                 TMR1_Stop();
-                PM_Sleep("EXT", 0);
+                PM_Set_Sleep("EXT", 0);
             }
         }
         TMR1_Stop();
@@ -113,23 +113,28 @@ void PM_Manage_Power(){
     
     if(VL_SLEEP){
         if(PM_Check_VL()){
-            PM_Sleep("VL", 0);
+            PM_Set_Sleep("VL", 0);
         }
     }
     
 }
 
-void PM_Sleep(char* cause, uint16_t delay){
+void PM_Set_Sleep(char* cause, uint16_t delay){
     if(strcmp(cause, "CMD")==0 || strcmp(cause, "UART")==0 || strcmp(cause, "VL")==0 || strcmp(cause, "EXT")==0){
         TMR1_Start();
         while(TMR1_SoftwareCounterGet() < delay);
-        TMR1_Stop();
-        TMR1_SoftwareCounterClear();
         UART1_Write_String("\r\n\nELM327 v1.4b\n\n");
         PORTBbits.RB14 = 0; // Set LED_STATUS pin as low. 
-        __builtin_pwrsav(0);
+        PM_Sleep();
         strcpy(LAST_SLEEP_TRIG, cause);
     }
+}
+
+void PM_Sleep(){
+    TMR1_Start();
+    __builtin_pwrsav(0);
+    TMR1_Stop();
+    TMR1_SoftwareCounterClear();
 }
 
 void PM_STSLLT(){
@@ -302,7 +307,7 @@ void __attribute__((interrupt, no_auto_psv)) _CNInterrupt(void)
     // Check the state of RC2
     if (PORTCbits.RC2 == 0)
     {
-        PM_Sleep("EXT", 0);
+        PM_Set_Sleep("EXT", 0);
     }
     else
     {

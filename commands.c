@@ -160,7 +160,7 @@ void processSTCommand(char *command) {
             val1[index-7] = command[index];
         }
         num = strtoul(val1, NULL, 10);
-        PM_Sleep("CMD", 65536>num>=0?num:0);
+        PM_Set_Sleep("CMD", 65536>num>=0?num:0);
     }
     else if(strncmp(command, "STSLXP", 6) == 0){ //Configure the polarity of the external SLEEP input.
         if(command[6] == '0'||command[6] == '1'){

@@ -96,7 +96,7 @@ void PM_LCS();
 
 /**
   @Summary
-    Puts device to Sleep.
+    Puts device to Sleep and sets sleep trigger.
 
   @Description
     This routine puts the device to sleep after the specified delay, and stores the latest sleep trigger.
@@ -118,10 +118,33 @@ void PM_LCS();
  
   @Example 
     <code>    
-        PM_Sleep("CMD", 0);
+        PM_Set_Sleep("CMD", 0);
     </code>
 */
-void PM_Sleep(char*, uint16_t);
+void PM_Set_Sleep(char*, uint16_t);
+
+/**
+  @Summary
+    Puts device to Sleep.
+
+  @Description
+    This routine directly puts the device to sleep.
+  
+  @Preconditions
+    Having initialized Timer1.
+
+  @Param
+    None
+
+  @Returns
+    None
+ 
+  @Example 
+    <code>    
+        PM_Sleep();
+    </code>
+*/
+void PM_Sleep();
 
 /**
   @Summary
