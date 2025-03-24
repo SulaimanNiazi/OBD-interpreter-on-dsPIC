@@ -82,14 +82,14 @@ extern "C"
             None
 
         @Returns
-            unsigned integer value of conversion.
+            float value of conversion.
 
         @Example 
             <code>    
-                uint16_t volts = ADC1_Get_Voltage();
+                float volts = ADC1_Get_Voltage();
             </code>
     */
-    extern uint16_t ADC1_Get_Voltage(void);
+    extern float ADC1_Get_Voltage(void);
     
         /**
         @Summary

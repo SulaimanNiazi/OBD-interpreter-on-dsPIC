@@ -84,8 +84,8 @@ void ADC1_Calib(uint16_t value){
     Steps_per_Volt = value;
 }
 
-uint16_t ADC1_Get_Voltage(void){
-    return (uint16_t)(ADC1BUF0/Steps_per_Volt);
+float ADC1_Get_Voltage(void){
+    return (float)(ADC1BUF0/Steps_per_Volt);
 }
 
 uint16_t ADC1_Get_Steps(void){

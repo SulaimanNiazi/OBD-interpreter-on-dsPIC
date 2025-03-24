@@ -63,16 +63,16 @@ void calibrateVoltage(char* argument)
 }
 void readADCvolts(char* adcVolts, char* precession)
 {
-    uint16_t volts = ADC1_Get_Voltage();
     //read the ANALOG_IN pin here and return the actual  volts
-    //analog_in_voltage = adc_read();
-    //uint8_t precess = strtoul(precession, NULL, 10);
-    //sprintf(adcVolts,"%u.",analog_in_voltage);
+    float analog_in_voltage = ADC1_Get_Voltage();
+    uint8_t precess = strtoul(precession, '\0', 10);
+    sprintf(adcVolts,"%u.",analog_in_voltage);
 }
 uint16_t readADCSteps(void)
 {
-    uint16_t steps = ADC1_Get_Steps();
     //read the ANALOG_IN pin here and return the ADC steps
+    uint16_t steps = ADC1_Get_Steps();
+    return steps;
 }
 
 void saveCallibratedValues(void)
