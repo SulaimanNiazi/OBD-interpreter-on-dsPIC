@@ -110,7 +110,7 @@ void __attribute__ ( (interrupt, no_auto_psv) ) _AD1Interrupt( void )
                 __builtin_pwrsav(0);
             }
         }
-        else if(VCHG_WAKE){
+        if(VCHG_WAKE){
             if(!PM_Check_VCHG()){
                 __builtin_pwrsav(0);
             }

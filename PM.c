@@ -33,7 +33,7 @@ void PM_Initialize(){
     
     strcpy(LAST_SLEEP_TRIG, "NONE");
     strcpy(LAST_WAKE_TRIG, "NONE");
-    UART_SLEEP = EXT_INPUT = EXT_SLEEP = VL_SLEEP = VL_WAKE = VCHG_WAKE = STSLXP_VAL = SLEEPING = false;
+    UART_SLEEP = EXT_INPUT = EXT_SLEEP = VL_SLEEP = VL_WAKE = VCHG_WAKE = STSLXP_VAL = false;
     UART_WAKE = EXT_WAKE = true;
     UART_SLEEP_TIM = 1200;
     UART_WAKE_TIM_L = 0;
@@ -107,32 +107,11 @@ void PM_Manage_Power(){
     }
     
     if(VL_SLEEP){
-        if(VL_SLEEP_SYMBOL=='>'){
-            if(ADC1_Get_Voltage() > VL_SLEEP_VOLT){
-                TMR1_Start();
-                while(ADC1_Get_Voltage() > VL_SLEEP_VOLT){
-                    if(TMR1_SoftwareCounterGet() >= VL_SLEEP_TIM){
-                        TMR1_Stop();
-                        PM_Sleep("VL", 0);
-                    }
-                }
-                TMR1_Stop();
-                TMR1_SoftwareCounterClear();
-            }
-        }else{
-            if(ADC1_Get_Voltage() < VL_SLEEP_VOLT){
-                TMR1_Start();
-                while(ADC1_Get_Voltage() < VL_SLEEP_VOLT){
-                    if(TMR1_SoftwareCounterGet() >= VL_SLEEP_TIM){
-                        TMR1_Stop();
-                        PM_Sleep("VL", 0);
-                    }
-                }
-                TMR1_Stop();
-                TMR1_SoftwareCounterClear();
-            }
+        if(PM_Check_VL()){
+            PM_Sleep("VL", 0);
         }
     }
+    
 }
 
 void PM_Sleep(char* cause, uint16_t delay){
@@ -144,7 +123,6 @@ void PM_Sleep(char* cause, uint16_t delay){
         UART1_Write_String("\r\n\nELM327 v1.4b\n\n");
         __builtin_pwrsav(0);
         strcpy(LAST_SLEEP_TRIG, cause);
-        SLEEPING = true;
     }
 }
 
@@ -242,10 +220,9 @@ void PM_Set_Wake_Trig(char* trig){
 }
 
 bool PM_Check_Reset_Recent_Sleep(){;
-    if(RCONbits.SLEEP /*SLEEPING*/){
+    if(RCONbits.SLEEP){
         if(UART_WAKE && (UART_WAKE_TIM_L <= (64/GetBR())*1000 <= UART_WAKE_TIM_H)){
             RCONbits.SLEEP = 0;
-            //SLEEPING = false;
             return true;
         }
         else{
@@ -258,9 +235,12 @@ bool PM_Check_Reset_Recent_Sleep(){;
 bool PM_Check_VL(void){
     bool trig = false;
     if(VL_WAKE_SYMBOL == '>'){
+        ADC1_Start();
+        delay_ms(1000);
         if(ADC1_Get_Voltage() > VL_WAKE_VOLT){
             TMR1_Start();
             while(ADC1_Get_Voltage() > VL_WAKE_VOLT){
+                ADC1_Start();
                 if(TMR1_SoftwareCounterGet() >= VL_WAKE_TIM){
                     trig = true;
                 }
@@ -269,9 +249,12 @@ bool PM_Check_VL(void){
             TMR1_SoftwareCounterClear();
         }
     }else{
+        ADC1_Start();
+        delay_ms(1000);
         if(ADC1_Get_Voltage() < VL_WAKE_VOLT){
             TMR1_Start();
             while(ADC1_Get_Voltage() < VL_WAKE_VOLT){
+                ADC1_Start();
                 if(TMR1_SoftwareCounterGet() >= VL_WAKE_TIM){
                     trig = true;
                 }
@@ -284,11 +267,15 @@ bool PM_Check_VL(void){
 }
 
 bool PM_Check_VCHG(void){
-    uint16_t initial = ADC1_Get_Voltage(), final;
+    ADC1_Start();
+    delay_ms(1000);
+    float initial = ADC1_Get_Voltage(), final;
     TMR1_Start();
     while(TMR1_SoftwareCounterGet() < VCHG_WAKE_TIM);
     TMR1_Stop();
     TMR1_SoftwareCounterClear();
+    ADC1_Start();
+    delay_ms(1000);
     final = ADC1_Get_Voltage();
     if(VCHG_WAKE_VOLT > 0){
         if(final - initial > VCHG_WAKE_VOLT){
