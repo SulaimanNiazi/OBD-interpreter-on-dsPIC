@@ -23,7 +23,7 @@
 static char CTRL_MODE[20], LAST_SLEEP_TRIG[5], LAST_WAKE_TRIG[5], VL_SLEEP_SYMBOL, VL_WAKE_SYMBOL;
 static uint16_t UART_SLEEP_TIM, UART_WAKE_TIM_L, UART_WAKE_TIM_H, VL_SLEEP_TIM, VL_WAKE_TIM, VCHG_WAKE_TIM, EXT_SLEEP_VAL, EXT_WAKE_VAL, EXT_WAKE_DELAY;
 static float VL_SLEEP_VOLT, VL_WAKE_VOLT, VCHG_WAKE_VOLT;
-static bool LOW_POWER, UART_SLEEP, UART_WAKE, EXT_INPUT, EXT_SLEEP, SLEEPING, EXT_WAKE, VL_SLEEP, VL_WAKE, VCHG_WAKE, STSLXP_VAL, UART_INACTIVITY_ALERT;
+static bool PWR_CTRL, UART_SLEEP, UART_WAKE, EXT_INPUT, EXT_SLEEP, SLEEPING, EXT_WAKE, VL_SLEEP, VL_WAKE, VCHG_WAKE, STSLXP_VAL, UART_INACTIVITY_ALERT;
 
 // Comment a function and leverage automatic documentation with slash star star
 /**
@@ -66,10 +66,10 @@ static bool LOW_POWER, UART_SLEEP, UART_WAKE, EXT_INPUT, EXT_SLEEP, SLEEPING, EX
  
   @Example 
     <code>    
-        PM_init();
+        PM_Initialize();
     </code>
 */
-void PM_init();
+void PM_Initialize();
 
 /**
   @Summary
@@ -79,7 +79,7 @@ void PM_init();
     This routine displays all PM parameters through UART1.
   
   @Preconditions
-    Having initialized PM (using PM_init() function) and UART1.
+    Having initialized PM (using PM_Initialize() function) and UART1.
 
   @Param
     None
@@ -128,10 +128,10 @@ void PM_Sleep(char*, uint16_t);
     STSLLT command of PM (Power Management).
 
   @Description
-    This routine displays last sleep and wake triggers through UART1.
+    This routine displays the last implemented sleep and wake triggers through UART1.
   
   @Preconditions
-    Having initialized PM (using PM_init() function) and UART1.
+    Having initialized PM (using PM_Initialize() function) and UART1.
 
   @Param
     None
@@ -151,7 +151,7 @@ void PM_STSLLT();
     STSLU command of PM (Power Management).
 
   @Description
-    This routine sets UART sleep and wake triggers.
+    This routine sets UART SLEEP and UART WAKE triggers.
   
   @Preconditions
     None
@@ -174,10 +174,10 @@ void PM_STSLU(bool, bool);
     STSLVG command of PM (Power Management).
 
   @Description
-    This routine sets voltage change wake trigger.
+    This routine sets voltage change wake (VCHG WAKE) trigger.
   
   @Preconditions
- * Having initialized PM (using PM_init() function) and ADC1. 
+ * Having initialized PM (using PM_Initialize() function) and ADC1. 
  * Recommended: Setting VCHG wake trigger voltage (using PM_STSLVGW() function).
 
   @Param
@@ -198,10 +198,10 @@ void PM_STSLVG(bool);
     STSLVL command of PM (Power Management).
 
   @Description
-    This routine sets voltage level sleep and wake triggers.
+    This routine sets voltage level sleep (VL SLEEP) and wake (VL WAKE) triggers.
   
   @Preconditions
- * Having initialized PM (using PM_init() function) and ADC1.
+ * Having initialized PM (using PM_Initialize() function) and ADC1.
  * Recommended: Configure voltage level sleep and wake triggers (using PM_STSLVLS() and PM_STSLVLW() functions respectively).
 
   @Param
@@ -222,7 +222,7 @@ void PM_STSLVL(bool, bool);
     STSLUIT command of PM (Power Management).
 
   @Description
-    This routine sets the time in seconds for UART inactivity timeout.
+    This routine sets the time in seconds for UART inactivity timeout for UART SLEEP trigger.
   
   @Preconditions
     None
@@ -270,7 +270,7 @@ void PM_STSLPCP(bool);
     STSLUWP command of PM (Power Management).
 
   @Description
-    This routine sets the UART wake up pulse timing in microseconds.
+    This routine sets the UART WAKE trigger pulse timing range in microseconds.
   
   @Preconditions
     None
@@ -315,10 +315,33 @@ void PM_STSLXP(bool);
 
 /**
   @Summary
+    STSLX command of PM (Power Management).
+
+  @Description
+    This routine configures the external sleep (EXT SLEEP) and wake (EXT WAKE) triggers.
+  
+  @Preconditions
+    None
+
+  @Param
+    Boolean value of the external sleep and wake triggers respectively.
+
+  @Returns
+    None
+ 
+  @Example 
+    <code>    
+        PM_STSLX(false, true);
+    </code>
+*/
+void PM_STSLX(bool, bool);
+
+/**
+  @Summary
     STSLVLS command of PM (Power Management).
 
   @Description
-    This routine configures the voltage level sleep trigger.
+    This routine configures the voltage level sleep (VL SLEEP) trigger.
   
   @Preconditions
     None
@@ -343,7 +366,7 @@ void PM_STSLVLS(char, float, uint16_t);
     STSLVLW command of PM (Power Management).
 
   @Description
-    This routine configures the voltage level wake trigger.
+    This routine configures the voltage level wake (VL WAKE) trigger.
   
   @Preconditions
     None
@@ -368,7 +391,7 @@ void PM_STSLVLW(char, float, uint16_t);
     STSLVGW command of PM (Power Management).
 
   @Description
-    This routine configures the voltage change wake up trigger.
+    This routine configures the voltage change wake up (VCHG WAKE) trigger.
   
   @Preconditions
     None
@@ -445,7 +468,7 @@ bool PM_Is_Voltage_Valid(float);
     This routine only returns the UART inactivity trigger status.
   
   @Preconditions
-    Initializing PM (using PM_init() function)
+    Initializing PM (using PM_Initialize() function)
     Recommended: Configuring UART sleep trigger (using PM_STSLU() function)
 
   @Param
@@ -469,7 +492,7 @@ bool PM_Get_Inactivity_trig();
     This routine checks if the device was sleeping and resets the SLEEP_MODE variable that determines this.
   
   @Preconditions
-    Initialize PM (using PM_init() function).
+    Initialize PM (using PM_Initialize() function).
 
   @Param
     None
@@ -492,7 +515,7 @@ bool PM_Check_Reset_Recent_Sleep();
     This routine simply gets the time, in seconds, set for the UART inactivity timeout sleep trigger.
   
   @Preconditions
- * Initialize PM (using PM_init() function)
+ * Initialize PM (using PM_Initialize() function)
  * Recommended: Set the time for UART inactivity timeout (using PM_STSLUIT() function)
 
   @Param
@@ -507,6 +530,75 @@ bool PM_Check_Reset_Recent_Sleep();
     </code>
 */
 uint16_t PM_Get_Inactivity_time();
+
+/**
+  @Summary
+    Manages Power related functions.
+
+  @Description
+    This routine runs all non interrupt PM functions.
+  
+  @Preconditions
+    Initialize PM (using PM_Initialize() function)
+
+  @Param
+    None
+
+  @Returns
+    None
+ 
+  @Example 
+    <code>    
+        PM_Manage_Power();
+    </code>
+*/
+void PM_Manage_Power();
+
+/**
+  @Summary
+    Checks VL WAKE is triggered.
+
+  @Description
+    This routine checks if the VL WAKE is triggered, if returns a boolean value accordingly.
+  
+  @Preconditions
+    Initialize PM (using PM_Initialize() function) and ADC1.
+
+  @Param
+    None
+
+  @Returns
+    Boolean value stating if VL WAKE is triggered.
+ 
+  @Example 
+    <code>    
+        bool VL_WAKE = PM_Check_VL();
+    </code>
+*/
+bool PM_Check_VL(void);
+
+/**
+  @Summary
+    Checks VL CHG is triggered.
+
+  @Description
+    This routine checks if the VL CHG is triggered, if returns a boolean value accordingly.
+  
+  @Preconditions
+    Initialize PM (using PM_Initialize() function) and ADC1.
+
+  @Param
+    None
+
+  @Returns
+    Boolean value stating if VL CHG is triggered.
+ 
+  @Example 
+    <code>    
+        bool VL_CHG = PM_Check_VCHG();
+    </code>
+*/
+bool PM_Check_VCHG(void);
 
 // live documentation
 

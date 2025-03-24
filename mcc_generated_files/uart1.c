@@ -72,6 +72,7 @@ uint8_t UART1_Read(void)
     }else{
         while(!(U1STAbits.URXDA == 1))
         {
+            PM_Manage_Power();
         }
     }
 

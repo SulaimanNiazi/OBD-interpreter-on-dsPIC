@@ -1,17 +1,18 @@
-/**
-* @file        commands.c
-* @author      Aqib D. Ace
-* @date        March 2025
-* @version     0.0.0
+/* 
+ * File: commands.c
+ * Authors: Aqib D. Ace and Muhammad Sulaiman
+ * Comments: This is the source file for the commands module.
+ * Revision history: Created in March, 2025.
 */
 
-
+#include <stdbool.h>
 #include "xc.h"
 #include "mcc_generated_files/system.h"
 #include "mcc_generated_files/uart1.h"
-#include <stdbool.h>
 #include "commands.h"
 #include "PM.h"
+
+// Section of Parameters
 
 extern char ELM327_VERSION[32];
 char tempCommand[32];
@@ -28,6 +29,8 @@ char stixStr[32]   = "STN2120 v5.6.5 [2020.10.14]\0";
 char serialStr[16] = "212010154303\0";
 //bool argErrFlag = false;
 bool statusLEDs = true;
+
+// Section of Functions
 
 void processCommand(char *command)
 {
@@ -76,6 +79,7 @@ void processCommand(char *command)
 }
 
 //function for checking numerical arguments
+
 bool argErrCheck(char* command)  
 {
     for (int i = 0; command[i] != '\0'; i++)
@@ -90,6 +94,7 @@ bool argErrCheck(char* command)
 }
 
 //function for checking ASCII arguments
+
 bool argAsciiErrCheck(char* command)
 {
     for (int i = 0; command[i] != '\0'; i++)
@@ -103,7 +108,8 @@ bool argAsciiErrCheck(char* command)
     return 0;
 }
 
-//function for processing ST commands
+//functions for processing ST commands
+
 void processSTCommand(char *command) {
     if  (strncmp(command, "STBRT", 5) == 0)
     {
@@ -129,19 +135,22 @@ void processSTCommand(char *command) {
         
         }
     }
-    else if(strcmp(command, "STSLCS") == 0){
+    
+/********************* POWER Management Commands *************************/
+    
+    else if(strcmp(command, "STSLCS") == 0){ //Display PM parameters
         UART1_Write('O');
         UART1_Write('K');
         UART1_Write('\n');
         PM_LCS();
     }
-    else if(strcmp(command, "STSLLT") == 0){
+    else if(strcmp(command, "STSLLT") == 0){ //Display the last sleep and wake triggers
         UART1_Write('O');
         UART1_Write('K');
         UART1_Write('\n');
         PM_STSLLT();
     }
-    else if(strncmp(command, "STSLEEP", 7) == 0){
+    else if(strncmp(command, "STSLEEP", 7) == 0){ //Put device to sleep by command
         UART1_Write('O');
         UART1_Write('K');
         UART1_Write('\n');
@@ -153,7 +162,7 @@ void processSTCommand(char *command) {
         num = strtoul(val1, NULL, 10);
         PM_Sleep("CMD", 65536>num>=0?num:0);
     }
-    else if(strncmp(command, "STSLXP", 6) == 0){
+    else if(strncmp(command, "STSLXP", 6) == 0){ //Configure the polarity of the external SLEEP input.
         if(command[6] == '0'||command[6] == '1'){
             UART1_Write('O');
             UART1_Write('K');
@@ -163,7 +172,7 @@ void processSTCommand(char *command) {
             UART1_Write("?");
         }
     }
-    else if(strncmp(command, "STSLPCP", 7) == 0){
+    else if(strncmp(command, "STSLPCP", 7) == 0){ //Set polarity of the PWR_CTRL output.
         if(command[7]=='0'||command[7]=='1'){
             UART1_Write('O');
             UART1_Write('K');
@@ -174,7 +183,7 @@ void processSTCommand(char *command) {
             UART1_Write('\n');
         }
     }
-    else if(strncmp(command, "STSLUIT", 7) == 0){
+    else if(strncmp(command, "STSLUIT", 7) == 0){ //Set the time for UART SLEEP inactivity timeout.
         char val1[10]="";
         uint16_t index = 7;
         for(index; command[index] != '\0'; index++){
@@ -191,7 +200,7 @@ void processSTCommand(char *command) {
             UART1_Write('\n');
         }
     }
-    else if(strncmp(command, "STSLUWP", 7) == 0){
+    else if(strncmp(command, "STSLUWP", 7) == 0){ //Set the UART WAKE pulse time range.
         char val1[10]="", val2[10]="";
         uint16_t index = 7;
         for(index; command[index] != '\0' && command[index] != ','; index++){
@@ -212,7 +221,7 @@ void processSTCommand(char *command) {
             UART1_Write('\n');
         }
     }
-    else if(strncmp(command, "STSLVGW", 7) == 0){
+    else if(strncmp(command, "STSLVGW", 7) == 0){ //Configure the VCHG WAKE trigger.
         char val1[10]="", val2[10]="";
         uint16_t index = 7;
         for(index; command[index] != '\0' && command[index] != ','; index++){
@@ -234,7 +243,7 @@ void processSTCommand(char *command) {
             UART1_Write('\n');
         }
     }
-    else if(strncmp(command, "STSLVG", 6) == 0){
+    else if(strncmp(command, "STSLVG", 6) == 0){ //Set the VCHG WAKE trigger.
         char val1[10]="";
         uint16_t index = 6;
         for(index; command[index] != '\0'; index++){
@@ -251,7 +260,7 @@ void processSTCommand(char *command) {
             UART1_Write('\n');
         }
     }
-    else if(strncmp(command, "STSLVLS", 7) == 0){
+    else if(strncmp(command, "STSLVLS", 7) == 0){ //Configure the VL SLEEP trigger.
         char val1[10]="", val2[10]="";
         uint16_t index = 8;
         for(index; command[index] != '\0' && command[index] != ','; index++){
@@ -273,7 +282,7 @@ void processSTCommand(char *command) {
             UART1_Write('\n');
         }
     }
-    else if(strncmp(command, "STSLVLW", 7) == 0){
+    else if(strncmp(command, "STSLVLW", 7) == 0){ //Configure the VL WAKE trigger.
         char val1[10]="", val2[10]="";
         uint16_t index = 8;
         for(index; command[index] != '\0' && command[index] != ','; index++){
@@ -295,7 +304,7 @@ void processSTCommand(char *command) {
             UART1_Write('\n');
         }
     }
-    else if(strncmp(command, "STSLVL", 6) == 0){
+    else if(strncmp(command, "STSLVL", 6) == 0){ //Set the VL SLEEP and VL WAKE triggers.
         char val1[10]="", val2[10]="";
         uint16_t index = 6;
         for(index; command[index] != '\0' && command[index] != ','; index++){
@@ -315,7 +324,7 @@ void processSTCommand(char *command) {
             UART1_Write('\n');
         }
     }
-    else if(strncmp(command, "STSLU", 5) == 0){
+    else if(strncmp(command, "STSLU", 5) == 0){ //Set the UART SLEEP and UART WAKE triggers.
         char val1[10]="", val2[10]="";
         uint16_t index = 5;
         for(index; command[index] != '\0' && command[index] != ','; index++){
@@ -334,6 +343,28 @@ void processSTCommand(char *command) {
             UART1_Write('\n');
         }
     }
+    else if(strncmp(command, "STSLX", 5)==0){ //Configure the EXT SLEEP and EXT WAKE triggers.
+        char val1[10]="", val2[10]="";
+        uint16_t index = 5;
+        for(index; command[index] != '\0' && command[index] != ','; index++){
+            val1[index-5] = command[index];
+        }
+        for(uint16_t index2 = index + 1; command[index2] != '\0'; index2++){
+            val2[index2-index-1] = command[index2];
+        }
+        if((strncmp(val1, "ON", 2)==0||strncmp(val1, "OFF", 3)==0)&&(strncmp(val2, "ON", 2)==0||strncmp(val2, "OFF", 3)==0)){
+            UART1_Write('O');
+            UART1_Write('K');
+            UART1_Write('\n');
+            PM_STSLX(strncmp(val1, "ON", 2)==0?true:false, strncmp(val2, "ON", 2)==0?true:false);
+        }else{
+            UART1_Write('?');
+            UART1_Write('\n');
+        }
+    }
+    
+/****************************** End of Power Management commands ***************************/    
+    
     else if (strncmp(command, "STBR", 4) == 0 ) 
     {
         char *baudrateStr = command + 4; // Skip "STBR "
@@ -810,7 +841,7 @@ void loadDefaultOnWarmReset(void)
 {
     enableEcho();
     disableLF();
-    //set PP R-Type to default
+    //Set PP R-Type to default
     //continue
 }
 

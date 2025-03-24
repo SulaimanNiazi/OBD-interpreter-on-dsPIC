@@ -54,6 +54,298 @@
 /**
     Section: Device Pin Macros
 */
+/**
+  @Summary
+    Sets the GPIO pin, RC2, high using LATC2.
+
+  @Description
+    Sets the GPIO pin, RC2, high using LATC2.
+
+  @Preconditions
+    The RC2 must be set to an output.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Set RC2 high (1)
+    IO_RC2_SetHigh();
+    </code>
+
+*/
+#define IO_RC2_SetHigh()          (_LATC2 = 1)
+/**
+  @Summary
+    Sets the GPIO pin, RC2, low using LATC2.
+
+  @Description
+    Sets the GPIO pin, RC2, low using LATC2.
+
+  @Preconditions
+    The RC2 must be set to an output.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Set RC2 low (0)
+    IO_RC2_SetLow();
+    </code>
+
+*/
+#define IO_RC2_SetLow()           (_LATC2 = 0)
+/**
+  @Summary
+    Toggles the GPIO pin, RC2, using LATC2.
+
+  @Description
+    Toggles the GPIO pin, RC2, using LATC2.
+
+  @Preconditions
+    The RC2 must be set to an output.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Toggle RC2
+    IO_RC2_Toggle();
+    </code>
+
+*/
+#define IO_RC2_Toggle()           (_LATC2 ^= 1)
+/**
+  @Summary
+    Reads the value of the GPIO pin, RC2.
+
+  @Description
+    Reads the value of the GPIO pin, RC2.
+
+  @Preconditions
+    None.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    uint16_t portValue;
+
+    // Read RC2
+    postValue = IO_RC2_GetValue();
+    </code>
+
+*/
+#define IO_RC2_GetValue()         _RC2
+/**
+  @Summary
+    Configures the GPIO pin, RC2, as an input.
+
+  @Description
+    Configures the GPIO pin, RC2, as an input.
+
+  @Preconditions
+    None.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Sets the RC2 as an input
+    IO_RC2_SetDigitalInput();
+    </code>
+
+*/
+#define IO_RC2_SetDigitalInput()  (_TRISC2 = 1)
+/**
+  @Summary
+    Configures the GPIO pin, RC2, as an output.
+
+  @Description
+    Configures the GPIO pin, RC2, as an output.
+
+  @Preconditions
+    None.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Sets the RC2 as an output
+    IO_RC2_SetDigitalOutput();
+    </code>
+
+*/
+#define IO_RC2_SetDigitalOutput() (_TRISC2 = 0)
+/**
+  @Summary
+    Sets the GPIO pin, RD8, high using LATD8.
+
+  @Description
+    Sets the GPIO pin, RD8, high using LATD8.
+
+  @Preconditions
+    The RD8 must be set to an output.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Set RD8 high (1)
+    IO_RD8_SetHigh();
+    </code>
+
+*/
+#define IO_RD8_SetHigh()          (_LATD8 = 1)
+/**
+  @Summary
+    Sets the GPIO pin, RD8, low using LATD8.
+
+  @Description
+    Sets the GPIO pin, RD8, low using LATD8.
+
+  @Preconditions
+    The RD8 must be set to an output.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Set RD8 low (0)
+    IO_RD8_SetLow();
+    </code>
+
+*/
+#define IO_RD8_SetLow()           (_LATD8 = 0)
+/**
+  @Summary
+    Toggles the GPIO pin, RD8, using LATD8.
+
+  @Description
+    Toggles the GPIO pin, RD8, using LATD8.
+
+  @Preconditions
+    The RD8 must be set to an output.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Toggle RD8
+    IO_RD8_Toggle();
+    </code>
+
+*/
+#define IO_RD8_Toggle()           (_LATD8 ^= 1)
+/**
+  @Summary
+    Reads the value of the GPIO pin, RD8.
+
+  @Description
+    Reads the value of the GPIO pin, RD8.
+
+  @Preconditions
+    None.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    uint16_t portValue;
+
+    // Read RD8
+    postValue = IO_RD8_GetValue();
+    </code>
+
+*/
+#define IO_RD8_GetValue()         _RD8
+/**
+  @Summary
+    Configures the GPIO pin, RD8, as an input.
+
+  @Description
+    Configures the GPIO pin, RD8, as an input.
+
+  @Preconditions
+    None.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Sets the RD8 as an input
+    IO_RD8_SetDigitalInput();
+    </code>
+
+*/
+#define IO_RD8_SetDigitalInput()  (_TRISD8 = 1)
+/**
+  @Summary
+    Configures the GPIO pin, RD8, as an output.
+
+  @Description
+    Configures the GPIO pin, RD8, as an output.
+
+  @Preconditions
+    None.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Sets the RD8 as an output
+    IO_RD8_SetDigitalOutput();
+    </code>
+
+*/
+#define IO_RD8_SetDigitalOutput() (_TRISD8 = 0)
 
 /**
     Section: Function Prototypes

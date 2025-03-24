@@ -5,16 +5,32 @@
  * Created on   March 8, 2025, 4:41 PM
  */
 
+// Section of included header files
 
+#include <stdbool.h>
+#include <stdio.h>
+#include <string.h>
+#include <p33EP256GP506.h>
 #include "xc.h"
+
 #include "PM.h"
 #include "mcc_generated_files/uart1.h"
 #include "mcc_generated_files/tmr1.h"
-#include <stdbool.h>
-#include <stdlib.h>
-#include <string.h>
+#include "ADC1.h"
+#include "at.h"
 
-void PM_init(){
+// Section of functions
+
+void PM_Initialize(){
+    TRISAbits.TRISA8 = 0;   // Set RA8 (PWR_CTRL) pin as output.
+    TRISCbits.TRISC2 = 1;   // Set RC2 (EXT SLEEP) pin as input
+    CNENCbits.CNIEC2 = 1;   // Enable CN for RC2
+    IEC1bits.CNIE = 1;      // Enable CN interrupts
+    IFS1bits.CNIF = 0;      // Clear CN interrupt flag
+    
+    CNPUCbits.CNPUC2 = 1;   // Enable internal pull-up for RC2
+    INTCON2bits.GIE = 1;    // Enable global interrupts
+    
     strcpy(LAST_SLEEP_TRIG, "NONE");
     strcpy(LAST_WAKE_TRIG, "NONE");
     UART_SLEEP = EXT_INPUT = EXT_SLEEP = VL_SLEEP = VL_WAKE = VCHG_WAKE = STSLXP_VAL = SLEEPING = false;
@@ -39,11 +55,11 @@ void PM_init(){
     if(master_enable){
         strcpy(CTRL_MODE, "ELM327");
         EXT_WAKE_DELAY = 5;
-        LOW_POWER = true;
+        PM_STSLPCP(true);
     }else{
         strcpy(CTRL_MODE, "NATIVE");
         EXT_WAKE_DELAY = 0;
-        LOW_POWER = false;
+        PM_STSLPCP(false);
     }
 }
 
@@ -51,7 +67,7 @@ void PM_LCS(){
     char line[40], symbols[3]="";
     snprintf(line, 40, "\r\nCTRL MODE: %s", CTRL_MODE);
     UART1_Write_String(line);
-    snprintf(line, 40, "\r\nPWR_CTRL: LOW POWER = %s", LOW_POWER?"HIGH":"LOW");
+    snprintf(line, 40, "\r\nPWR_CTRL: LOW POWER = %s", PWR_CTRL?"HIGH":"LOW");
     UART1_Write_String(line);
     snprintf(line, 40, "\r\nUART SLEEP: %s, %d s", UART_SLEEP?"ON":"OFF", UART_SLEEP_TIM);
     UART1_Write_String(line);
@@ -75,6 +91,48 @@ void PM_LCS(){
     symbols[1]='\0';
     snprintf(line, 40, "\r\nVCHG WAKE: %s, %s%.2fV IN %d ms", VCHG_WAKE?"ON":"OFF", symbols, VCHG_WAKE_VOLT, VCHG_WAKE_TIM);
     UART1_Write_String(line);
+}
+
+void PM_Manage_Power(){
+    if(EXT_SLEEP){
+        while(PORTCbits.RC2 == PWR_CTRL?1:0){
+            TMR1_Start();
+            if(TMR1_SoftwareCounterGet()>=EXT_SLEEP_VAL){
+                TMR1_Stop();
+                PM_Sleep("EXT", 0);
+            }
+        }
+        TMR1_Stop();
+        TMR1_SoftwareCounterClear();
+    }
+    
+    if(VL_SLEEP){
+        if(VL_SLEEP_SYMBOL=='>'){
+            if(ADC1_Get_Voltage() > VL_SLEEP_VOLT){
+                TMR1_Start();
+                while(ADC1_Get_Voltage() > VL_SLEEP_VOLT){
+                    if(TMR1_SoftwareCounterGet() >= VL_SLEEP_TIM){
+                        TMR1_Stop();
+                        PM_Sleep("VL", 0);
+                    }
+                }
+                TMR1_Stop();
+                TMR1_SoftwareCounterClear();
+            }
+        }else{
+            if(ADC1_Get_Voltage() < VL_SLEEP_VOLT){
+                TMR1_Start();
+                while(ADC1_Get_Voltage() < VL_SLEEP_VOLT){
+                    if(TMR1_SoftwareCounterGet() >= VL_SLEEP_TIM){
+                        TMR1_Stop();
+                        PM_Sleep("VL", 0);
+                    }
+                }
+                TMR1_Stop();
+                TMR1_SoftwareCounterClear();
+            }
+        }
+    }
 }
 
 void PM_Sleep(char* cause, uint16_t delay){
@@ -101,13 +159,21 @@ void PM_STSLU(bool sleep, bool wakeup){
     UART_WAKE = wakeup;
 }
 
-void PM_STSLVG(bool trigger){
-    VCHG_WAKE = PM_Is_Voltage_Valid(VCHG_WAKE_VOLT)? trigger: false;;
+void PM_STSLVG(bool trig){
+    if(PM_Is_Voltage_Valid(VCHG_WAKE_VOLT) && trig){
+        VCHG_WAKE = true;
+        ADC1_Enable();
+    }else{
+        VCHG_WAKE = false;
+    }
 }
 
 void PM_STSLVL(bool sleep, bool wakeup){
     VL_SLEEP = PM_Is_Voltage_Valid(VL_SLEEP_VOLT)? sleep: false;
     VL_WAKE = PM_Is_Voltage_Valid(VL_WAKE_VOLT)? wakeup: false;
+    if(VL_SLEEP || VL_WAKE){
+        ADC1_Enable();
+    }
 }
 
 void PM_STSLUIT(uint16_t time){
@@ -115,7 +181,8 @@ void PM_STSLUIT(uint16_t time){
 }
 
 void PM_STSLPCP(bool lowPower){
-    LOW_POWER = lowPower;
+    PWR_CTRL = lowPower;
+    PORTAbits.RA8 = PWR_CTRL?1:0;
 }
 
 void PM_STSLUWP(uint16_t min, uint16_t max){
@@ -125,6 +192,11 @@ void PM_STSLUWP(uint16_t min, uint16_t max){
 
 void PM_STSLXP(bool STSLXP){
     STSLXP_VAL = STSLXP;
+}
+
+void PM_STSLX(bool sleep, bool wake){
+    EXT_SLEEP = sleep;
+    EXT_WAKE = wake;
 }
 
 void PM_STSLVLS(char symbol, float volt, uint16_t time){
@@ -181,4 +253,68 @@ bool PM_Check_Reset_Recent_Sleep(){;
         }
     }
     return false;
+}
+
+bool PM_Check_VL(void){
+    bool trig = false;
+    if(VL_WAKE_SYMBOL == '>'){
+        if(ADC1_Get_Voltage() > VL_WAKE_VOLT){
+            TMR1_Start();
+            while(ADC1_Get_Voltage() > VL_WAKE_VOLT){
+                if(TMR1_SoftwareCounterGet() >= VL_WAKE_TIM){
+                    trig = true;
+                }
+            }
+            TMR1_Stop();
+            TMR1_SoftwareCounterClear();
+        }
+    }else{
+        if(ADC1_Get_Voltage() < VL_WAKE_VOLT){
+            TMR1_Start();
+            while(ADC1_Get_Voltage() < VL_WAKE_VOLT){
+                if(TMR1_SoftwareCounterGet() >= VL_WAKE_TIM){
+                    trig = true;
+                }
+            }
+            TMR1_Stop();
+            TMR1_SoftwareCounterClear();
+        }
+    }
+    return trig;
+}
+
+bool PM_Check_VCHG(void){
+    uint16_t initial = ADC1_Get_Voltage(), final;
+    TMR1_Start();
+    while(TMR1_SoftwareCounterGet() < VCHG_WAKE_TIM);
+    TMR1_Stop();
+    TMR1_SoftwareCounterClear();
+    final = ADC1_Get_Voltage();
+    if(VCHG_WAKE_VOLT > 0){
+        if(final - initial > VCHG_WAKE_VOLT){
+            return true;
+        }
+    }else{
+        if(final - initial < VCHG_WAKE_VOLT){
+            return true;
+        }
+    }
+    return false;
+}
+
+void __attribute__((interrupt, no_auto_psv)) _CNInterrupt(void)
+{
+    // Clear CN interrupt flag
+    IFS1bits.CNIF = 0;
+
+    // Check the state of RC2
+    if (PORTCbits.RC2 == 0)
+    {
+        PM_Sleep("EXT", 0);
+    }
+    else
+    {
+        PM_Set_Wake_Trig("EXT");
+        UART1_Write('>');
+    }
 }

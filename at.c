@@ -7,6 +7,7 @@
 
 #include "xc.h"
 #include "at.h"
+#include "ADC1.h"
 
 
 bool uartEcho = true;
@@ -62,6 +63,7 @@ void calibrateVoltage(char* argument)
 }
 void readADCvolts(char* adcVolts, char* precession)
 {
+    uint16_t volts = ADC1_Get_Voltage();
     //read the ANALOG_IN pin here and return the actual  volts
     //analog_in_voltage = adc_read();
     //uint8_t precess = strtoul(precession, NULL, 10);
@@ -69,6 +71,7 @@ void readADCvolts(char* adcVolts, char* precession)
 }
 uint16_t readADCSteps(void)
 {
+    uint16_t steps = ADC1_Get_Steps();
     //read the ANALOG_IN pin here and return the ADC steps
 }
 

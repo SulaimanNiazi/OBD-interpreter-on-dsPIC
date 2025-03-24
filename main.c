@@ -7,6 +7,7 @@
 
 #include "mcc_generated_files/system.h"
 #include "mcc_generated_files/uart1.h"
+#include "PM.h"
 
 char receivedCmd[50]; //buffer for commands
 
@@ -20,19 +21,18 @@ void delay_ms(uint16_t ms) { //temporary delay function
 
 int main(void)
 {
-    
     // initialize the device
     SYSTEM_Initialize();
 
     delay_ms(200);
     UART1_Write_String("ELM327 v1.4b\r"); ///ATI string received on connection
     processCommand("ATPPR");
-    UART1_Write('>');
-        
-        
+    UART1_Write('>');       
+    
     while (1)
     {
-        // wait for the command and process it
+        //Provide Delay
+        delay_ms(1000);
         UART1_ReadString(receivedCmd, 50);
         processCommand(receivedCmd);
     }
