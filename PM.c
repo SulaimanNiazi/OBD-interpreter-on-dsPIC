@@ -31,6 +31,9 @@ void PM_Initialize(){
     CNPUCbits.CNPUC2 = 1;   // Enable internal pull-up for RC2
     INTCON2bits.GIE = 1;    // Enable global interrupts
     
+    TRISBbits.TRISB14 = 0;  // Set RB14 (LED_STATUS) pin as output
+    PORTBbits.RB14 = 1;     // Set LED_STATUS pin as high (by default)
+    
     strcpy(LAST_SLEEP_TRIG, "NONE");
     strcpy(LAST_WAKE_TRIG, "NONE");
     UART_SLEEP = EXT_INPUT = EXT_SLEEP = VL_SLEEP = VL_WAKE = VCHG_WAKE = STSLXP_VAL = false;
@@ -94,6 +97,8 @@ void PM_LCS(){
 }
 
 void PM_Manage_Power(){
+    PORTBbits.RB14 = 1; //Set LED_STATUS pin as high
+    
     if(EXT_SLEEP){
         while(PORTCbits.RC2 == PWR_CTRL?1:0){
             TMR1_Start();
@@ -121,6 +126,7 @@ void PM_Sleep(char* cause, uint16_t delay){
         TMR1_Stop();
         TMR1_SoftwareCounterClear();
         UART1_Write_String("\r\n\nELM327 v1.4b\n\n");
+        PORTBbits.RB14 = 0; // Set LED_STATUS pin as low. 
         __builtin_pwrsav(0);
         strcpy(LAST_SLEEP_TRIG, cause);
     }
