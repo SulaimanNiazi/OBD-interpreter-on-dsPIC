@@ -1,6 +1,6 @@
 /**
 * @file        at.h
-* @author      Aqib D. Ace 
+* @author      Aqib D. Ace and Muhammad Sulaiman
 * @date        March 2025
 * @version     0.0.0
 */
@@ -22,6 +22,8 @@ uint16_t readADCSteps(void);
 void saveCallibratedValues(void);
 uint8_t readSavedCalibrationStatus(void);
 void setAllSettoDefault(void);
+uint32_t getCalibration(void);
+
 #ifdef	__cplusplus
 extern "C" {
 #endif /* __cplusplus */

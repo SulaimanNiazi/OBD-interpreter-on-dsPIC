@@ -1,6 +1,6 @@
 /**
 * @file        at.c
-* @author      Aqib D. Ace 
+* @author      Aqib D. Ace and Muhammad Sulaiman
 * @date        March 2025
 * @version     0.0.0
 */
@@ -101,4 +101,8 @@ uint8_t readSavedCalibrationStatus(void)
 void setAllSettoDefault(void)
 {
     
+}
+
+uint32_t getCalibration(void){
+    return voltage_calibration/1000;
 }

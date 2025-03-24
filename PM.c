@@ -206,9 +206,8 @@ void PM_STSLVGW(float volt, uint16_t time){
 }
 
 bool PM_Is_Voltage_Valid(float volt){
-    //WIP
-    //awaiting ADC config. and Voltage calibration commands
-    return false;
+    uint32_t maxVolt = getCalibration();
+    return 0 <= volt < maxVolt;
 }
 
 bool PM_Get_Inactivity_trig(){
