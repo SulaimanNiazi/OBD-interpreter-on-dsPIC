@@ -18,13 +18,18 @@
         <itemPath>mcc_generated_files/interrupt_manager.h</itemPath>
         <itemPath>mcc_generated_files/mcc.h</itemPath>
         <itemPath>mcc_generated_files/system.h</itemPath>
+        <itemPath>mcc_generated_files/adc1.h</itemPath>
+        <itemPath>mcc_generated_files/adc_module_features.h</itemPath>
         <itemPath>mcc_generated_files/tmr1.h</itemPath>
       </logicalFolder>
       <itemPath>nvmpic.h</itemPath>
       <itemPath>commands.h</itemPath>
-      <itemPath>at.h</itemPath>
       <itemPath>PM.h</itemPath>
-      <itemPath>ADC1.h</itemPath>
+      <itemPath>parameters.h</itemPath>
+      <itemPath>mcc_generated_files/parser.h</itemPath>
+      <itemPath>mcc_generated_files/gpios.h</itemPath>
+      <itemPath>can1.h</itemPath>
+      <itemPath>delay.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -53,17 +58,20 @@
         <itemPath>flash.s</itemPath>
         <itemPath>mcc_generated_files/tmr1.c</itemPath>
         <itemPath>mcc_generated_files/uart1.c</itemPath>
+        <itemPath>mcc_generated_files/adc1.c</itemPath>
       </logicalFolder>
       <itemPath>main.c</itemPath>
       <itemPath>nvmpic.c</itemPath>
       <itemPath>commands.c</itemPath>
-      <itemPath>at.c</itemPath>
       <itemPath>PM.c</itemPath>
-      <itemPath>ADC1.c</itemPath>
+      <itemPath>parameters.c</itemPath>
+      <itemPath>mcc_generated_files/parser.c</itemPath>
+      <itemPath>mcc_generated_files/gpios.c</itemPath>
+      <itemPath>can1.c</itemPath>
+      <itemPath>delay.c</itemPath>
     </logicalFolder>
   </logicalFolder>
   <sourceRootList>
-    <Elem>../../../../../OneDrive/Documents/dspic33e-code-examples-1.0.0/dspic33e-code-examples-1.0.0/dspic33e-adc-in-sleep/firmware/src/system_config/exp16/dspic33ep512mu810</Elem>
     <Elem>.</Elem>
   </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
@@ -74,13 +82,13 @@
         <targetDevice>dsPIC33EP256GP506</targetDevice>
         <targetHeader></targetHeader>
         <targetPluginBoard></targetPluginBoard>
-        <platformTool>Simulator</platformTool>
+        <platformTool>noID</platformTool>
         <languageToolchain>XC16</languageToolchain>
         <languageToolchainVersion>2.10</languageToolchainVersion>
         <platform>3</platform>
       </toolsSet>
       <packs>
-        <pack name="dsPIC33E-GM-GP-MC-GU-MU_DFP" vendor="Microchip" version="1.5.258"/>
+        <pack name="dsPIC33E-GM-GP-MC-GU-MU_DFP" vendor="Microchip" version="1.6.297"/>
       </packs>
       <ScriptingSettings>
       </ScriptingSettings>

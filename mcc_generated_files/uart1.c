@@ -3,11 +3,11 @@
 #include "../PM.h"
 #include "tmr1.h"
 
-#define FCLK 7370000
+#define FUART  20267500UL  
+char backupBuffer[100];
 
 void UART1_Initialize(uint32_t baudrate)
 {
-    BaudRate = baudrate;
     IEC0bits.U1TXIE = 0;
     IEC0bits.U1RXIE = 0;
 /**    
@@ -21,24 +21,20 @@ void UART1_Initialize(uint32_t baudrate)
     U1STA = 0x0;
     // BaudRate = 9600; Frequency = 7984164 Hz; BRG 207; 
     
-    U1BRG = ((FCLK/baudrate)/16)-1;
+    U1BRG = ((FUART/baudrate)/16)-1;
     //0xCF;
-    
+    U1MODEbits.BRGH = 0;
     IEC0bits.U1RXIE = 1;
     
     U1MODEbits.UARTEN = 1;  // enabling UARTEN bit
     U1STAbits.UTXEN = 1;   
 }
 
-uint16_t GetBR(){
-    return BaudRate;
-}
-
 uint32_t UART1_GetBRdiff(uint32_t brate)
 {
     
-    uint32_t brate_cal = ((FCLK/brate)/16)-1; //33 max
-    uint32_t brate_act = FCLK/(16 * (brate_cal + 1));//14676 max baudrate with no error
+    uint32_t brate_cal = ((FUART/brate)/16)-1; //33 max
+    uint32_t brate_act = FUART/(16 * (brate_cal + 1));//14676 max baudrate with no error
     
     float Error;
     
@@ -61,18 +57,24 @@ uint8_t UART1_Read(void)
     if(PM_Get_Inactivity_trig()){
         uint16_t Inactivity_limit = PM_Get_Inactivity_time()*1000;
         TMR1_Start();
+        bool alerted = false;
         while(!(U1STAbits.URXDA == 1)&&(TMR1_SoftwareCounterGet() < Inactivity_limit))
         {
+            if((TMR1_SoftwareCounterGet() - Inactivity_limit < 60000) && UART_ALERT && !alerted){
+                UART1_Write_String("\nACT ALERT");
+                alerted = true;
+            }
         }
         TMR1_Stop();
         if(TMR1_SoftwareCounterGet() >= Inactivity_limit){
             PM_Set_Sleep("UART", 0);
         }
         TMR1_SoftwareCounterClear();
-    }else{
+    }
+    else
+    {
         while(!(U1STAbits.URXDA == 1))
         {
-            PM_Manage_Power();
         }
     }
 
@@ -90,18 +92,38 @@ void UART1_ReadString(char *buffer, uint16_t maxLength)
     {
         
         buffer[i] = UART1_Read(); // Read the character
-        UART1_Write(buffer[i]);
-        // Check for enter key (assuming '\n' or '\r' as the delimiter)
-        if (buffer[i] == '\n' || buffer[i] == '\r')
+        //check Echo status adjustable by ATE
+        if(getEchoStatus())
         {
-            buffer[i]='\0';
+            UART1_Write(buffer[i]);
+        }
+        
+        // <CR> command handling
+        if (buffer[i] == '\r' && i == 0)
+        {
+            strcpy(buffer,backupBuffer);
             break;
         }
-        // Check for backspace
-        else if(buffer[i]==0x08){
+        //backspace handling
+        if (buffer[i] == '\b' && i>0)
+        {
+            if(getEchoStatus())
+            {
+                UART1_Write(' ');
+                UART1_Write(buffer[i]);
+            }
+            i--;   
+        }
+        
+        // Check for enter key (assuming '\n' or '\r' as the delimiter)
+        else if (buffer[i] == '\n' || buffer[i] == '\r')
+        {
             buffer[i]='\0';
-            buffer[--i]='\0';
-        }else{
+            strcpy(backupBuffer,buffer);
+            break;
+        }
+        else
+        {
             i++;
         }
     }
@@ -175,10 +197,6 @@ void __attribute__ ( ( interrupt, no_auto_psv ) ) _U1RXInterrupt( void )
 {
     IFS0bits.U1RXIF = 0;
     if(PM_Check_Reset_Recent_Sleep()){
-        if(UART_WAKE_TIM_L < 8000000/BaudRate < UART_WAKE_TIM_H){
-            PM_Set_Wake_Trig("UART");
-        }else{
-            PM_Sleep();
-        }
+        PM_Set_Wake_Trig("UART");
     }
 }

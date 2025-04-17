@@ -64,10 +64,10 @@
 #pragma config POSCMD = NONE    //Primary Oscillator Mode Select bits->Primary Oscillator disabled
 #pragma config OSCIOFNC = OFF    //OSC2 Pin Function bit->OSC2 is clock output
 #pragma config IOL1WAY = ON    //Peripheral pin select configuration->Allow only one reconfiguration
-#pragma config FCKSM = CSDCMD    //Clock Switching Mode bits->Both Clock switching and Fail-safe Clock Monitor are disabled
+#pragma config FCKSM = CSECMD    //Clock Switching Mode bits->Both Clock switching and Fail-safe Clock Monitor are disabled
 
 // FOSCSEL
-#pragma config FNOSC = FRCDIVN    //Oscillator Source Selection->Internal Fast RC (FRC) Oscillator with postscaler
+#pragma config FNOSC = FRC    //Oscillator Source Selection->Internal Fast RC (FRC) Oscillator with postscaler
 #pragma config IESO = OFF    //Two-speed Oscillator Start-up Enable bit->Start up with user-selected oscillator source
 
 // FGS
@@ -78,25 +78,27 @@
 #include "clock.h"
 #include "system.h"
 #include "system_types.h"
-#include "uart1.h"
 #include "interrupt_manager.h"
 #include "traps.h"
+#include "uart1.h"
 #include "tmr1.h"
-#include "../PM.h"
-#include "../ADC1.h"
+#include "adc1.h"
+
+
 
 void SYSTEM_Initialize(void)
 {
     PIN_MANAGER_Initialize();
-    INTERRUPT_Initialize();
     CLOCK_Initialize();
+    INTERRUPT_Initialize();
     UART1_Initialize(9600);
+    initCAN();
     INTERRUPT_GlobalEnable();
     SYSTEM_CORCONModeOperatingSet(CORCON_MODE_PORVALUES);
     initDefaultAT();
     TMR1_Initialize();
-    PM_Initialize();
     ADC1_Initialize();
+    PM_Initialize();
 }
 
 /**

@@ -11,7 +11,7 @@
 #include <stdint.h>
 #include <stdbool.h>
 #include <inttypes.h>
-#include "at.h"
+#include "parameters.h"
 #include <stdio.h>
 #include <string.h>
 
@@ -107,5 +107,13 @@ void configurePPs(char* argument);
 void enablePP(uint8_t serial);
 void disablePP(uint8_t serial);
 void changePP(uint8_t xx, uint8_t yy);
+uint8_t hexDigitToDecimal(char hex);
+uint8_t hexDigitsToDecimal(char x, char y);
+uint8_t updateCustomConfigurationOBD(void);
+uint8_t loadCustomConfigurationOBD(uint8_t reason);
+uint8_t restoreCustomConfigurationOBD(void);
+uint8_t loadOtpConfigurationOBD(void);
+uint8_t restoreOtpConfigurationOBD(void);
+uint8_t updateOtpConfigurationOBD(void);
 #endif	/* FLASH_H */
 

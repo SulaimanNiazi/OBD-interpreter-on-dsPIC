@@ -5,8 +5,8 @@
 * @version     0.0.0
 */
 
-#ifndef XC_HEADER_TEMPLATE_H
-#define	XC_HEADER_TEMPLATE_H
+#ifndef COMMANDS_H
+#define	COMMANDS_H
 
 #include <xc.h> // include processor files - each processor file is guarded.  
 void processCommand(char *command); //verify and filters the command

@@ -115,12 +115,7 @@ void __attribute__ ( ( interrupt, no_auto_psv ) ) _T1Interrupt (  )
     /* Check if the Timer Interrupt/Status is set */
 
     //***User Area Begin
-    
-    if(RCONbits.SLEEP){
-        PORTBbits.RB14 = PORTBbits.RB14 == 1? 0: 1;
-        delay_ms(3000);
-    }
-    
+
     // ticker function call;
     // ticker is 1 -> Callback function gets called everytime this ISR executes
     if(TMR1_InterruptHandler) 

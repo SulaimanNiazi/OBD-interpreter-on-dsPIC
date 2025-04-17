@@ -10,6 +10,9 @@
 #include "stdlib.h"
 #include "stdio.h"
 #include <libpic30.h>
+#include "parser.h"
+#include "../PM.h"
+#include "gpios.h"
 
 #ifndef SYSTEM_H
 #define	SYSTEM_H

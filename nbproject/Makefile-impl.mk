@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=OBD-interpreter-on-dsPIC.X
+PROJECTNAME=SM_OBD.X
 
 # Active Configuration
 DEFAULTCONF=default

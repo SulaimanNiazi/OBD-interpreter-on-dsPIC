@@ -7,8 +7,8 @@
 
 // This is a guard condition so that contents of this file are not included
 // more than once.  
-#ifndef XC_HEADER_TEMPLATE_H
-#define	XC_HEADER_TEMPLATE_H
+#ifndef PM_H
+#define	PM_H
 
 #include <xc.h> // include processor files - each processor file is guarded.  
 
@@ -21,9 +21,9 @@
 // TODO Insert declarations
 
 static char CTRL_MODE[20], LAST_SLEEP_TRIG[5], LAST_WAKE_TRIG[5], VL_SLEEP_SYMBOL, VL_WAKE_SYMBOL;
-static uint16_t UART_SLEEP_TIM, UART_WAKE_TIM_L, UART_WAKE_TIM_H, VL_SLEEP_TIM, VL_WAKE_TIM, VCHG_WAKE_TIM, EXT_SLEEP_VAL, EXT_WAKE_VAL, EXT_WAKE_DELAY;
+static uint16_t UART_SLEEP_TIM, UART_WAKE_TIM_L, UART_WAKE_TIM_H, VL_SLEEP_TIM, VL_WAKE_TIM, VCHG_WAKE_TIM, EXT_SLEEP_TIM, EXT_WAKE_TIM, VL_SLEEP_STEPS, VL_WAKE_STEPS, VCHG_WAKE_STEPS;
 static float VL_SLEEP_VOLT, VL_WAKE_VOLT, VCHG_WAKE_VOLT;
-static bool PWR_CTRL, UART_SLEEP, UART_WAKE, EXT_INPUT, EXT_SLEEP, EXT_WAKE, VL_SLEEP, VL_WAKE, VCHG_WAKE, STSLXP_VAL, UART_INACTIVITY_ALERT;
+static bool UART_ALERT, PWR_CTRL, UART_SLEEP, UART_WAKE, EXT_INPUT, EXT_SLEEP, EXT_WAKE, VL_SLEEP, VL_WAKE, VCHG_WAKE, STSLXP_VAL, UART_INACTIVITY_ALERT, VL_WAKE_CONVERT, VCHG_CONVERT, VL_SLEEP_CONVERT;
 
 // Comment a function and leverage automatic documentation with slash star star
 /**
@@ -283,7 +283,7 @@ void PM_STSLUIT(uint16_t);
  
   @Example 
     <code>    
-        PM_STSLUIT(true);
+        PM_STSLPCP(true);
     </code>
 */
 void PM_STSLPCP(bool);
@@ -382,7 +382,7 @@ void PM_STSLX(bool, bool);
         PM_STSLVLS('<', 12.85, 60);
     </code>
 */
-void PM_STSLVLS(char, float, uint16_t);
+void PM_STSLVLS_Volts(char, float, uint16_t);
 
 /**
   @Summary
@@ -407,7 +407,7 @@ void PM_STSLVLS(char, float, uint16_t);
         PM_STSLVLW('>', 12.85, 60);
     </code>
 */
-void PM_STSLVLW(char, float, uint16_t);
+void PM_STSLVLW_Volts(char, float, uint16_t);
 
 /**
   @Summary
@@ -431,7 +431,7 @@ void PM_STSLVLW(char, float, uint16_t);
         PM_STSLVGW(-0.15, 750);
     </code>
 */
-void PM_STSLVGW(float, uint16_t);
+void PM_STSLVGW_Volts(float, uint16_t);
 
 /**
   @Summary
@@ -623,6 +623,12 @@ bool PM_Check_VL(void);
 */
 bool PM_Check_VCHG(void);
 
+void PM_STSLVLS_Steps(char , int , uint16_t );
+
+void PM_STSLVLW_Steps(char , int , uint16_t );
+
+void PM_STSLVGW_Steps(int, uint16_t);
+
 // live documentation
 
 #ifdef	__cplusplus
@@ -636,5 +642,5 @@ extern "C" {
 }
 #endif /* __cplusplus */
 
-#endif	/* XC_HEADER_TEMPLATE_H */
+#endif	/* PM_H */
 

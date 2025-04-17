@@ -3,13 +3,12 @@
     <type>com.microchip.mplab.nbide.embedded.makeproject</type>
     <configuration>
         <data xmlns="http://www.netbeans.org/ns/make-project/1">
-            <name>OBD-interpreter-on-dsPIC</name>
+            <name>SM_OBD</name>
             <creation-uuid>adb32ab4-7d2e-46ba-8975-294882518936</creation-uuid>
             <make-project-type>0</make-project-type>
             <sourceEncoding>ISO-8859-1</sourceEncoding>
             <make-dep-projects/>
             <sourceRootList>
-                <sourceRootElem>../../../../../OneDrive/Documents/dspic33e-code-examples-1.0.0/dspic33e-code-examples-1.0.0/dspic33e-adc-in-sleep/firmware/src/system_config/exp16/dspic33ep512mu810</sourceRootElem>
                 <sourceRootElem>.</sourceRootElem>
             </sourceRootList>
             <confList>
